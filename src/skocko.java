@@ -1,4 +1,5 @@
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.SystemColor;
@@ -818,27 +819,27 @@ public class skocko extends JFrame {
 			case 1:a1.setIcon(button.getIcon()); break;
 			case 2:a2.setIcon(button.getIcon()); break;
 			case 3:a3.setIcon(button.getIcon()); break;
-			case 4:a4.setIcon(button.getIcon()); break; 
+			case 4:krajReda(button, a4, aa, ab, ac, ad, a1, a2, a3, a4); break; 
 			case 5:b1.setIcon(button.getIcon()); break;
 			case 6:b2.setIcon(button.getIcon()); break;
 			case 7:b3.setIcon(button.getIcon()); break;
-			case 8:b4.setIcon(button.getIcon()); break;
+			case 8:krajReda(button, b4, ba, bb, bc, bd, b1, b2, b3, b4); break;
 			case 9:c1.setIcon(button.getIcon()); break;
 			case 10:c2.setIcon(button.getIcon()); break;
 			case 11:c3.setIcon(button.getIcon()); break;
-			case 12:c4.setIcon(button.getIcon()); break;
+			case 12:krajReda(button, c4, ca, cb, cc, cd, c1, c2, c3, c4); break;
 			case 13:d1.setIcon(button.getIcon()); break;
 			case 14:d2.setIcon(button.getIcon()); break;
 			case 15:d3.setIcon(button.getIcon()); break;
-			case 16:d4.setIcon(button.getIcon()); break;
+			case 16:krajReda(button, d4, da, db, dc, dd, d1, d2, d3, d4); break;
 			case 17:e1.setIcon(button.getIcon()); break;
 			case 18:e2.setIcon(button.getIcon()); break;
 			case 19:e3.setIcon(button.getIcon()); break;
-			case 20:e4.setIcon(button.getIcon()); break;
+			case 20:krajReda(button, e4, ea, eb, ec, ed, e1, e2, e3, e4); break;
 			case 21:f1.setIcon(button.getIcon()); break;
 			case 22:f2.setIcon(button.getIcon()); break;
 			case 23:f3.setIcon(button.getIcon()); break;
-			case 24:f4.setIcon(button.getIcon()); break;
+			case 24:krajReda(button, f4, fa, fb, fc, fd, f1, f2, f3, f4); break;
 		}
 	}
 	
@@ -846,5 +847,192 @@ public class skocko extends JFrame {
 	    Random random = new Random();
 	    int randomNum = random.nextInt(6) + 1;
 	    return randomNum;
+	}
+	
+	public int[] brojPogodjenihIbrojOnihKojiNisuNaSvomMestu(JLabel a, JLabel b, JLabel c, JLabel d) {
+		int[] niz = new int[2];
+		int brojPogodjenih = 0;
+		int brojOnihKojiNisuNaSvomMestu = 0;
+		boolean prviPogodjen = false;
+		boolean drugiPogodjen = false;
+		boolean treciPogodjen = false;
+		boolean cetvrtiPogodjen = false;
+		if(a.getIcon().toString().equals(r1.getIcon().toString())) prviPogodjen = true;
+		if(b.getIcon().toString().equals(r2.getIcon().toString())) drugiPogodjen = true;
+		if(c.getIcon().toString().equals(r3.getIcon().toString())) treciPogodjen = true;
+		if(d.getIcon().toString().equals(r4.getIcon().toString())) cetvrtiPogodjen = true;
+		
+		if(a.getIcon().toString().equals(r1.getIcon().toString())) {
+			brojPogodjenih++;
+		} else {
+			if(a.getIcon().toString().equals(r2.getIcon().toString()) && !drugiPogodjen) {
+				brojOnihKojiNisuNaSvomMestu++;
+				drugiPogodjen = true;
+			} else
+				if(a.getIcon().toString().equals(r3.getIcon().toString()) && !treciPogodjen) {
+					brojOnihKojiNisuNaSvomMestu++;
+					treciPogodjen = true;
+				} else
+					if(a.getIcon().toString().equals(r4.getIcon().toString()) && !cetvrtiPogodjen) {
+						brojOnihKojiNisuNaSvomMestu++;
+						cetvrtiPogodjen = true;
+					}
+		}
+		if(b.getIcon().toString().equals(r2.getIcon().toString())) {
+			brojPogodjenih++;
+		} else {
+			if(b.getIcon().toString().equals(r1.getIcon().toString()) && !prviPogodjen) {
+				brojOnihKojiNisuNaSvomMestu++;
+				prviPogodjen = true;
+			} else
+				if(b.getIcon().toString().equals(r3.getIcon().toString()) && !treciPogodjen) {
+					brojOnihKojiNisuNaSvomMestu++;
+					treciPogodjen = true;
+				} else
+					if(b.getIcon().toString().equals(r4.getIcon().toString()) && !cetvrtiPogodjen) {
+						brojOnihKojiNisuNaSvomMestu++;
+						cetvrtiPogodjen = true;
+					}
+		}
+		if(c.getIcon().toString().equals(r3.getIcon().toString())) {
+			brojPogodjenih++;
+		} else {
+			if(c.getIcon().toString().equals(r1.getIcon().toString())  && !prviPogodjen) {
+				brojOnihKojiNisuNaSvomMestu++;
+				prviPogodjen = true;
+			} else
+				if(c.getIcon().toString().equals(r2.getIcon().toString())  && !drugiPogodjen) {
+					brojOnihKojiNisuNaSvomMestu++;
+					drugiPogodjen = true;
+				} else
+					if(c.getIcon().toString().equals(r4.getIcon().toString()) && !cetvrtiPogodjen) {
+						brojOnihKojiNisuNaSvomMestu++;
+						cetvrtiPogodjen = true;
+					}
+		}
+		if(d.getIcon().toString().equals(r4.getIcon().toString())) {
+			brojPogodjenih++;
+		} else {
+			if(d.getIcon().toString().equals(r1.getIcon().toString()) && !prviPogodjen) {
+				brojOnihKojiNisuNaSvomMestu++;
+				prviPogodjen = true;
+			} else
+				if(d.getIcon().toString().equals(r2.getIcon().toString()) && !drugiPogodjen) {
+					brojOnihKojiNisuNaSvomMestu++;
+					drugiPogodjen = true;
+				} else
+					if(d.getIcon().toString().equals(r3.getIcon().toString()) && !treciPogodjen) {
+						brojOnihKojiNisuNaSvomMestu++;
+						treciPogodjen = true;
+					}
+		}
+		niz[0] = brojPogodjenih;
+		niz[1] = brojOnihKojiNisuNaSvomMestu;
+		return niz;
+	}
+	
+	public void krajReda(JButton button, JLabel poslednji, JLabel a, JLabel b, JLabel c, JLabel d,
+			JLabel x, JLabel y, JLabel z, JLabel w) {
+		poslednji.setIcon(button.getIcon());
+		int brojPogodjenih = brojPogodjenihIbrojOnihKojiNisuNaSvomMestu(x, y, z, w)[0];
+		int brojOnihKojiNisuNaSvomMestu = brojPogodjenihIbrojOnihKojiNisuNaSvomMestu(x, y, z, w)[1];
+		if(brojPogodjenih == 1 && brojOnihKojiNisuNaSvomMestu == 0) {
+			a.setOpaque(true);
+			a.setBackground(Color.red);
+		}
+		if(brojPogodjenih == 2 && brojOnihKojiNisuNaSvomMestu == 0) {
+			a.setOpaque(true);
+			a.setBackground(Color.red);
+			b.setOpaque(true);
+			b.setBackground(Color.red);
+		}
+		if(brojPogodjenih == 3 && brojOnihKojiNisuNaSvomMestu == 0) {
+			a.setOpaque(true);
+			a.setBackground(Color.red);
+			b.setOpaque(true);
+			b.setBackground(Color.red);
+			c.setOpaque(true);
+			c.setBackground(Color.red);
+		}
+		if(brojPogodjenih == 4 && brojOnihKojiNisuNaSvomMestu == 0) {
+			a.setOpaque(true);
+			a.setBackground(Color.red);
+			b.setOpaque(true);
+			b.setBackground(Color.red);
+			c.setOpaque(true);
+			c.setBackground(Color.red);
+			d.setOpaque(true);
+			d.setBackground(Color.red);
+		}
+		if(brojPogodjenih == 1 && brojOnihKojiNisuNaSvomMestu == 1) {
+			a.setOpaque(true);
+			a.setBackground(Color.red);
+			b.setOpaque(true);
+			b.setBackground(Color.yellow);
+		}
+		if(brojPogodjenih == 1 && brojOnihKojiNisuNaSvomMestu == 2) {
+			a.setOpaque(true);
+			a.setBackground(Color.red);
+			b.setOpaque(true);
+			b.setBackground(Color.yellow);
+			c.setOpaque(true);
+			c.setBackground(Color.yellow);
+		}
+		if(brojPogodjenih == 1 && brojOnihKojiNisuNaSvomMestu == 3) {
+			a.setOpaque(true);
+			a.setBackground(Color.red);
+			b.setOpaque(true);
+			b.setBackground(Color.yellow);
+			c.setOpaque(true);
+			c.setBackground(Color.yellow);
+			d.setOpaque(true);
+			d.setBackground(Color.yellow);
+		}
+		if(brojPogodjenih == 2 && brojOnihKojiNisuNaSvomMestu == 1) {
+			a.setOpaque(true);
+			a.setBackground(Color.red);
+			b.setOpaque(true);
+			b.setBackground(Color.red);
+			c.setOpaque(true);
+			c.setBackground(Color.yellow);
+		}
+		if(brojPogodjenih == 2 && brojOnihKojiNisuNaSvomMestu == 2) {
+			a.setOpaque(true);
+			a.setBackground(Color.red);
+			b.setOpaque(true);
+			b.setBackground(Color.red);
+			c.setOpaque(true);
+			c.setBackground(Color.yellow);
+			d.setOpaque(true);
+			d.setBackground(Color.yellow);
+		}
+		if(brojPogodjenih == 0 && brojOnihKojiNisuNaSvomMestu == 1) {
+			a.setOpaque(true);
+			a.setBackground(Color.yellow);
+		}
+		if(brojPogodjenih == 0 && brojOnihKojiNisuNaSvomMestu == 2) {
+			a.setOpaque(true);
+			a.setBackground(Color.yellow);
+			b.setOpaque(true);
+			b.setBackground(Color.yellow);
+		}
+		if(brojPogodjenih == 0 && brojOnihKojiNisuNaSvomMestu == 3) {
+			a.setOpaque(true);
+			a.setBackground(Color.yellow);
+			b.setOpaque(true);
+			b.setBackground(Color.yellow);
+			c.setOpaque(true);
+			c.setBackground(Color.yellow);
+		}
+		if(brojPogodjenih == 0 && brojOnihKojiNisuNaSvomMestu == 4) {
+			a.setOpaque(true);
+			a.setBackground(Color.yellow);
+			b.setOpaque(true);
+			b.setBackground(Color.yellow);
+			c.setOpaque(true);
+			c.setBackground(Color.yellow);
+			d.setOpaque(true);
+			d.setBackground(Color.yellow);
+		}
 	}
 }
