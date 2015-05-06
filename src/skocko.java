@@ -4,6 +4,7 @@ import java.awt.Font;
 import java.awt.SystemColor;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Random;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -767,6 +768,46 @@ public class skocko extends JFrame {
 	private JButton getBtnStart() {
 		if (btnStart == null) {
 			btnStart = new JButton("START");
+			btnStart.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent arg0) {
+					switch(random()) {
+					  	case 1: r1.setIcon(btnSkocko.getIcon()); break;
+					  	case 2: r1.setIcon(btnZvezda.getIcon()); break;
+					  	case 3: r1.setIcon(btnKaro.getIcon()); break;
+					  	case 4: r1.setIcon(btnPik.getIcon()); break;
+					  	case 5: r1.setIcon(btnSrce.getIcon()); break;
+					  	case 6: r1.setIcon(btnTref.getIcon()); break;
+					}
+					switch(random()) {
+				  		case 1: r2.setIcon(btnSkocko.getIcon()); break;
+				  		case 2: r2.setIcon(btnZvezda.getIcon()); break;
+				  		case 3: r2.setIcon(btnKaro.getIcon()); break;
+				  		case 4: r2.setIcon(btnPik.getIcon()); break;
+				  		case 5: r2.setIcon(btnSrce.getIcon()); break;
+				  		case 6: r2.setIcon(btnTref.getIcon()); break;
+					}
+					switch(random()) {
+						case 1: r3.setIcon(btnSkocko.getIcon()); break;
+						case 2: r3.setIcon(btnZvezda.getIcon()); break;
+				  		case 3: r3.setIcon(btnKaro.getIcon()); break;
+				  		case 4: r3.setIcon(btnPik.getIcon()); break;
+				  		case 5: r3.setIcon(btnSrce.getIcon()); break;
+				  		case 6: r3.setIcon(btnTref.getIcon()); break;
+					}
+					switch(random()) {
+				  		case 1: r4.setIcon(btnSkocko.getIcon()); break;
+				  		case 2: r4.setIcon(btnZvezda.getIcon()); break;
+				  		case 3: r4.setIcon(btnKaro.getIcon()); break;
+				  		case 4: r4.setIcon(btnPik.getIcon()); break;
+				  		case 5: r4.setIcon(btnSrce.getIcon()); break;
+				  		case 6: r4.setIcon(btnTref.getIcon()); break;
+					}
+					//r1.setVisible(false);
+					//r2.setVisible(false);
+					//r3.setVisible(false);
+					//r4.setVisible(false);
+				}
+			});
 			btnStart.setFont(new Font("Eras Bold ITC", Font.PLAIN, 15));
 			btnStart.setBounds(100, 427, 110, 42);
 		}
@@ -799,5 +840,11 @@ public class skocko extends JFrame {
 			case 23:f3.setIcon(button.getIcon()); break;
 			case 24:f4.setIcon(button.getIcon()); break;
 		}
+	}
+	
+	public static int random() {
+	    Random random = new Random();
+	    int randomNum = random.nextInt(6) + 1;
+	    return randomNum;
 	}
 }
