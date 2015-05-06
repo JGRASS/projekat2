@@ -16,6 +16,8 @@ import javax.swing.JProgressBar;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 
 public class skocko extends JFrame {
@@ -270,6 +272,13 @@ public class skocko extends JFrame {
 	private JLabel getA1() {
 		if (a1 == null) {
 			a1 = new JLabel("");
+			a1.addMouseListener(new MouseAdapter() {
+				@Override
+				public void mouseClicked(MouseEvent arg0) {
+					a1.setIcon(new ImageIcon(this.getClass().getResource("/prazno.png")));
+					brojacKlikova = 1;
+				}
+			});
 			a1.setOpaque(true);
 			a1.setBackground(SystemColor.inactiveCaption);
 			a1.setBounds(100, 10, 50, 50);
@@ -279,6 +288,13 @@ public class skocko extends JFrame {
 	private JLabel getA2() {
 		if (a2 == null) {
 			a2 = new JLabel("");
+			a2.addMouseListener(new MouseAdapter() {
+				@Override
+				public void mouseClicked(MouseEvent arg0) {
+					a2.setIcon(new ImageIcon(this.getClass().getResource("/prazno.png")));
+					brojacKlikova = 2;
+				}
+			});
 			a2.setOpaque(true);
 			a2.setBackground(SystemColor.inactiveCaption);
 			a2.setBounds(160, 10, 50, 50);
@@ -290,6 +306,13 @@ public class skocko extends JFrame {
 		if (a3 == null) {
 			a3 = new JLabel("");
 			a3.setOpaque(true);
+			a3.addMouseListener(new MouseAdapter() {
+				@Override
+				public void mouseClicked(MouseEvent arg0) {
+					a3.setIcon(new ImageIcon(this.getClass().getResource("/prazno.png")));
+					brojacKlikova = 3;
+				}
+			});
 			a3.setBackground(SystemColor.inactiveCaption);
 			a3.setBounds(220, 10, 50, 50);
 		}
@@ -308,6 +331,13 @@ public class skocko extends JFrame {
 	private JLabel getB1() {
 		if (b1 == null) {
 			b1 = new JLabel("");
+			b1.addMouseListener(new MouseAdapter() {
+				@Override
+				public void mouseClicked(MouseEvent arg0) {
+					b1.setIcon(new ImageIcon(this.getClass().getResource("/prazno.png")));
+					brojacKlikova = 5;
+				}
+			});
 			b1.setOpaque(true);
 			b1.setBackground(SystemColor.inactiveCaption);
 			b1.setBounds(100, 70, 50, 50);
@@ -317,6 +347,13 @@ public class skocko extends JFrame {
 	private JLabel getB2() {
 		if (b2 == null) {
 			b2 = new JLabel("");
+			b2.addMouseListener(new MouseAdapter() {
+				@Override
+				public void mouseClicked(MouseEvent arg0) {
+					b2.setIcon(new ImageIcon(this.getClass().getResource("/prazno.png")));
+					brojacKlikova = 6;
+				}
+			});
 			b2.setOpaque(true);
 			b2.setBackground(SystemColor.inactiveCaption);
 			b2.setBounds(160, 70, 50, 50);
@@ -327,6 +364,13 @@ public class skocko extends JFrame {
 	private JLabel getB3() {
 		if (b3 == null) {
 			b3 = new JLabel("");
+			b3.addMouseListener(new MouseAdapter() {
+				@Override
+				public void mouseClicked(MouseEvent arg0) {
+					b3.setIcon(new ImageIcon(this.getClass().getResource("/prazno.png")));
+					brojacKlikova = 7;
+				}
+			});
 			b3.setOpaque(true);
 			b3.setBackground(SystemColor.inactiveCaption);
 			b3.setBounds(220, 70, 50, 50);
@@ -345,6 +389,13 @@ public class skocko extends JFrame {
 	private JLabel getC1() {
 		if (c1 == null) {
 			c1 = new JLabel("");
+			c1.addMouseListener(new MouseAdapter() {
+				@Override
+				public void mouseClicked(MouseEvent arg0) {
+					c1.setIcon(new ImageIcon(this.getClass().getResource("/prazno.png")));
+					brojacKlikova = 9;
+				}
+			});
 			c1.setOpaque(true);
 			c1.setBackground(SystemColor.inactiveCaption);
 			c1.setBounds(100, 130, 50, 50);
@@ -354,6 +405,13 @@ public class skocko extends JFrame {
 	private JLabel getC2() {
 		if (c2 == null) {
 			c2 = new JLabel("");
+			c2.addMouseListener(new MouseAdapter() {
+				@Override
+				public void mouseClicked(MouseEvent arg0) {
+					c2.setIcon(new ImageIcon(this.getClass().getResource("/prazno.png")));
+					brojacKlikova = 10;
+				}
+			});
 			c2.setOpaque(true);
 			c2.setBackground(SystemColor.inactiveCaption);
 			c2.setBounds(160, 130, 50, 50);
@@ -364,6 +422,13 @@ public class skocko extends JFrame {
 	private JLabel getC3() {
 		if (c3 == null) {
 			c3 = new JLabel("");
+			c3.addMouseListener(new MouseAdapter() {
+				@Override
+				public void mouseClicked(MouseEvent arg0) {
+					c3.setIcon(new ImageIcon(this.getClass().getResource("/prazno.png")));
+					brojacKlikova = 11;
+				}
+			});
 			c3.setOpaque(true);
 			c3.setBackground(SystemColor.inactiveCaption);
 			c3.setBounds(220, 130, 50, 50);
@@ -382,6 +447,13 @@ public class skocko extends JFrame {
 	private JLabel getD1() {
 		if (d1 == null) {
 			d1 = new JLabel("");
+			d1.addMouseListener(new MouseAdapter() {
+				@Override
+				public void mouseClicked(MouseEvent arg0) {
+					d1.setIcon(new ImageIcon(this.getClass().getResource("/prazno.png")));
+					brojacKlikova = 13;
+				}
+			});
 			d1.setOpaque(true);
 			d1.setBackground(SystemColor.inactiveCaption);
 			d1.setBounds(100, 190, 50, 50);
@@ -391,6 +463,13 @@ public class skocko extends JFrame {
 	private JLabel getD2() {
 		if (d2 == null) {
 			d2 = new JLabel("");
+			d2.addMouseListener(new MouseAdapter() {
+				@Override
+				public void mouseClicked(MouseEvent arg0) {
+					d2.setIcon(new ImageIcon(this.getClass().getResource("/prazno.png")));
+					brojacKlikova = 14;
+				}
+			});
 			d2.setOpaque(true);
 			d2.setBackground(SystemColor.inactiveCaption);
 			d2.setBounds(160, 190, 50, 50);
@@ -401,6 +480,13 @@ public class skocko extends JFrame {
 	private JLabel getD3() {
 		if (d3 == null) {
 			d3 = new JLabel("");
+			d3.addMouseListener(new MouseAdapter() {
+				@Override
+				public void mouseClicked(MouseEvent arg0) {
+					d3.setIcon(new ImageIcon(this.getClass().getResource("/prazno.png")));
+					brojacKlikova = 15;
+				}
+			});
 			d3.setOpaque(true);
 			d3.setBackground(SystemColor.inactiveCaption);
 			d3.setBounds(220, 190, 50, 50);
@@ -419,6 +505,13 @@ public class skocko extends JFrame {
 	private JLabel getE1() {
 		if (e1 == null) {
 			e1 = new JLabel("");
+			e1.addMouseListener(new MouseAdapter() {
+				@Override
+				public void mouseClicked(MouseEvent arg0) {
+					e1.setIcon(new ImageIcon(this.getClass().getResource("/prazno.png")));
+					brojacKlikova = 17;
+				}
+			});
 			e1.setOpaque(true);
 			e1.setBackground(SystemColor.inactiveCaption);
 			e1.setBounds(100, 250, 50, 50);
@@ -428,6 +521,13 @@ public class skocko extends JFrame {
 	private JLabel getE2() {
 		if (e2 == null) {
 			e2 = new JLabel("");
+			e2.addMouseListener(new MouseAdapter() {
+				@Override
+				public void mouseClicked(MouseEvent arg0) {
+					e2.setIcon(new ImageIcon(this.getClass().getResource("/prazno.png")));
+					brojacKlikova = 18;
+				}
+			});
 			e2.setOpaque(true);
 			e2.setBackground(SystemColor.inactiveCaption);
 			e2.setBounds(160, 250, 50, 50);
@@ -438,6 +538,13 @@ public class skocko extends JFrame {
 	private JLabel getE3() {
 		if (e3 == null) {
 			e3 = new JLabel("");
+			e3.addMouseListener(new MouseAdapter() {
+				@Override
+				public void mouseClicked(MouseEvent arg0) {
+					e3.setIcon(new ImageIcon(this.getClass().getResource("/prazno.png")));
+					brojacKlikova = 19;
+				}
+			});
 			e3.setOpaque(true);
 			e3.setBackground(SystemColor.inactiveCaption);
 			e3.setBounds(220, 250, 50, 50);
@@ -456,6 +563,13 @@ public class skocko extends JFrame {
 	private JLabel getF1() {
 		if (f1 == null) {
 			f1 = new JLabel("");
+			f1.addMouseListener(new MouseAdapter() {
+				@Override
+				public void mouseClicked(MouseEvent arg0) {
+					f1.setIcon(new ImageIcon(this.getClass().getResource("/prazno.png")));
+					brojacKlikova = 21;
+				}
+			});
 			f1.setOpaque(true);
 			f1.setBackground(SystemColor.inactiveCaption);
 			f1.setBounds(100, 310, 50, 50);
@@ -465,6 +579,13 @@ public class skocko extends JFrame {
 	private JLabel getF2() {
 		if (f2 == null) {
 			f2 = new JLabel("");
+			f2.addMouseListener(new MouseAdapter() {
+				@Override
+				public void mouseClicked(MouseEvent arg0) {
+					f2.setIcon(new ImageIcon(this.getClass().getResource("/prazno.png")));
+					brojacKlikova = 22;
+				}
+			});
 			f2.setOpaque(true);
 			f2.setBackground(SystemColor.inactiveCaption);
 			f2.setBounds(160, 310, 50, 50);
@@ -475,6 +596,13 @@ public class skocko extends JFrame {
 	private JLabel getF3() {
 		if (f3 == null) {
 			f3 = new JLabel("");
+			f3.addMouseListener(new MouseAdapter() {
+				@Override
+				public void mouseClicked(MouseEvent arg0) {
+					f3.setIcon(new ImageIcon(this.getClass().getResource("/prazno.png")));
+					brojacKlikova = 23;
+				}
+			});
 			f3.setOpaque(true);
 			f3.setBackground(SystemColor.inactiveCaption);
 			f3.setBounds(220, 310, 50, 50);
