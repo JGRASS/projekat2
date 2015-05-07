@@ -15,6 +15,7 @@ import javax.swing.JPanel;
 import javax.swing.JProgressBar;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
+import javax.swing.Timer;
 import javax.swing.border.EmptyBorder;
 
 import java.awt.event.MouseAdapter;
@@ -109,7 +110,7 @@ public class skocko extends JFrame {
 	boolean f2enabled = false;
 	boolean f3enabled = false;
 	private JLabel lblReenje;
-
+	
 	/**
 	 * Launch the application.
 	 */
@@ -130,6 +131,7 @@ public class skocko extends JFrame {
 	 * Create the frame.
 	 */
 	public skocko() {
+		setTitle("Skočko");
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 486, 509);
@@ -899,6 +901,8 @@ public class skocko extends JFrame {
 	private JProgressBar getProgressBar() {
 		if (progressBar == null) {
 			progressBar = new JProgressBar();
+			progressBar.setForeground(Color.GREEN);
+			progressBar.setValue(100);
 			progressBar.setOrientation(SwingConstants.VERTICAL);
 			progressBar.setBounds(415, 38, 41, 322);
 		}
@@ -915,6 +919,10 @@ public class skocko extends JFrame {
 	private JTextField getTextField() {
 		if (textField == null) {
 			textField = new JTextField();
+			textField.setFont(new Font("Eras Bold ITC", Font.PLAIN, 13));
+			textField.setHorizontalAlignment(SwingConstants.CENTER);
+			textField.setBackground(SystemColor.controlHighlight);
+			textField.setEditable(false);
 			textField.setBounds(415, 373, 41, 41);
 			textField.setColumns(10);
 		}
@@ -1005,6 +1013,8 @@ public class skocko extends JFrame {
 					isprazniSvaPolja();
 					brojacKlikova = 1;
 					lblReenje.setVisible(false);
+					
+					Timer();
 				}
 			});
 			btnStart.setFont(new Font("Eras Bold ITC", Font.PLAIN, 28));
@@ -1202,6 +1212,7 @@ public class skocko extends JFrame {
 			r4.setVisible(true);
 			lblReenje.setVisible(true);
 			
+			timer.stop();
 			JOptionPane jOptionPane = new JOptionPane();
 			jOptionPane.showMessageDialog(null, "Čestitamo!!! Pogodili ste traženu kombinaciju.", "Skočko" ,
 					JOptionPane.INFORMATION_MESSAGE);
@@ -1308,10 +1319,10 @@ public class skocko extends JFrame {
 			f2enabled = false;
 			f3enabled = false;
 			if(!pogodjeno) {
+				timer.stop();
 				JOptionPane jOptionPane = new JOptionPane();
 				jOptionPane.showMessageDialog(null, "Više sreće drugi put! :( ", "Skočko" ,
 						JOptionPane.INFORMATION_MESSAGE);
-				
 				r1.setVisible(true);
 				r2.setVisible(true);
 				r3.setVisible(true);
@@ -1381,4 +1392,38 @@ public class skocko extends JFrame {
 		}
 		return lblReenje;
 	}
+	
+	private boolean prviProlaz = false;
+	private int sekunda = 1000;//milisekunde
+	private int brojac = 100;
+	private Timer timer;
+	
+	public void Timer() {
+		timer = new Timer(sekunda, null);
+        timer.setRepeats(false);
+		timer.stop();
+        brojac = 100;
+        textField.setText("100");
+        progressBar.setValue(100);
+        timer.start();
+        ActionListener actionListener = new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				timer.start();
+				brojac--;
+            	textField.setText(String.valueOf(brojac));
+            	progressBar.setValue(brojac);
+            	if(brojac <= 10) progressBar.setForeground(Color.red);
+            	else progressBar.setForeground(Color.green);
+            	if(brojac == 0) {
+            		JOptionPane jOptionPane = new JOptionPane();
+        			jOptionPane.showMessageDialog(null, "Vreme je isteklo. ", "Skočko" ,
+        					JOptionPane.INFORMATION_MESSAGE);
+        			timer.stop();
+            	}
+			}
+		};
+		timer.addActionListener(actionListener);
+	}
+	
 }
