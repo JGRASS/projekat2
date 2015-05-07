@@ -1,4 +1,3 @@
-import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.Font;
@@ -11,11 +10,13 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JProgressBar;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
+
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
@@ -83,7 +84,6 @@ public class skocko extends JFrame {
 	private JProgressBar progressBar;
 	private JLabel lblVreme;
 	private JButton btnStart;
-	private JButton btnReenje;
 	private JTextField textField;
 	private JLabel r1;
 	private JLabel r2;
@@ -108,6 +108,7 @@ public class skocko extends JFrame {
 	boolean f1enabled = false;
 	boolean f2enabled = false;
 	boolean f3enabled = false;
+	private JLabel lblReenje;
 
 	/**
 	 * Launch the application.
@@ -194,12 +195,12 @@ public class skocko extends JFrame {
 		contentPane.add(getProgressBar());
 		contentPane.add(getLblVreme());
 		contentPane.add(getBtnStart());
-		contentPane.add(getBtnReenje());
 		contentPane.add(getTextField());
 		contentPane.add(getR1());
 		contentPane.add(getR2());
 		contentPane.add(getR3());
 		contentPane.add(getR4());
+		contentPane.add(getLblReenje());
 		
 		setLocationRelativeTo(null);
 	}
@@ -947,14 +948,6 @@ public class skocko extends JFrame {
 		}
 		return r4;
 	}
-	private JButton getBtnReenje() {
-		if (btnReenje == null) {
-			btnReenje = new JButton("RE\u0160ENJE");
-			btnReenje.setFont(new Font("Eras Bold ITC", Font.PLAIN, 15));
-			btnReenje.setBounds(220, 427, 110, 42);
-		}
-		return btnReenje;
-	}
 	private JButton getBtnStart() {
 		if (btnStart == null) {
 			btnStart = new JButton("START");
@@ -993,10 +986,10 @@ public class skocko extends JFrame {
 				  		case 6: r4.setIcon(btnTref.getIcon()); break;
 					}
 					
-					//r1.setVisible(false);
-					//r2.setVisible(false);
-					//r3.setVisible(false);
-					//r4.setVisible(false);
+					r1.setVisible(false);
+					r2.setVisible(false);
+					r3.setVisible(false);
+					r4.setVisible(false);
 					
 					btnKaro.setEnabled(true);
 					btnZvezda.setEnabled(true);
@@ -1008,10 +1001,14 @@ public class skocko extends JFrame {
 					a1enabled = true;
 					a2enabled = true;
 					a3enabled = true;
+					
+					isprazniSvaPolja();
+					brojacKlikova = 1;
+					lblReenje.setVisible(false);
 				}
 			});
-			btnStart.setFont(new Font("Eras Bold ITC", Font.PLAIN, 15));
-			btnStart.setBounds(100, 427, 110, 42);
+			btnStart.setFont(new Font("Eras Bold ITC", Font.PLAIN, 28));
+			btnStart.setBounds(100, 427, 230, 42);
 		}
 		return btnStart;
 	}
@@ -1137,6 +1134,7 @@ public class skocko extends JFrame {
 		poslednji.setIcon(button.getIcon());
 		int brojPogodjenih = brojPogodjenihIbrojOnihKojiNisuNaSvomMestu(x, y, z, w)[0];
 		int brojOnihKojiNisuNaSvomMestu = brojPogodjenihIbrojOnihKojiNisuNaSvomMestu(x, y, z, w)[1];
+		boolean pogodjeno = false;
 		if(x.equals(a1)) {
 			b1enabled = true;
 			b2enabled = true;
@@ -1190,6 +1188,24 @@ public class skocko extends JFrame {
 			c.setBackground(Color.red);
 			d.setOpaque(true);
 			d.setBackground(Color.red);
+		
+			btnSkocko.setEnabled(false);
+			btnTref.setEnabled(false);
+			btnKaro.setEnabled(false);
+			btnPik.setEnabled(false);
+			btnZvezda.setEnabled(false);
+			btnSrce.setEnabled(false);
+			
+			r1.setVisible(true);
+			r2.setVisible(true);
+			r3.setVisible(true);
+			r4.setVisible(true);
+			lblReenje.setVisible(true);
+			
+			JOptionPane jOptionPane = new JOptionPane();
+			jOptionPane.showMessageDialog(null, "Čestitamo!!! Pogodili ste traženu kombinaciju.", "Skočko" ,
+					JOptionPane.INFORMATION_MESSAGE);
+			pogodjeno = true;
 		}
 		if(brojPogodjenih == 1 && brojOnihKojiNisuNaSvomMestu == 1) {
 			a.setOpaque(true);
@@ -1291,6 +1307,78 @@ public class skocko extends JFrame {
 			f1enabled = false;
 			f2enabled = false;
 			f3enabled = false;
+			if(!pogodjeno) {
+				JOptionPane jOptionPane = new JOptionPane();
+				jOptionPane.showMessageDialog(null, "Više sreće drugi put! :( ", "Skočko" ,
+						JOptionPane.INFORMATION_MESSAGE);
+				
+				r1.setVisible(true);
+				r2.setVisible(true);
+				r3.setVisible(true);
+				r4.setVisible(true);
+				lblReenje.setVisible(true);
+			}
 		}
+		
+	}
+	
+	public void isprazniSvaPolja() {
+		a1.setIcon(new ImageIcon(this.getClass().getResource("/prazno.png")));
+		a2.setIcon(new ImageIcon(this.getClass().getResource("/prazno.png")));
+		a3.setIcon(new ImageIcon(this.getClass().getResource("/prazno.png")));
+		a4.setIcon(new ImageIcon(this.getClass().getResource("/prazno.png")));
+		b1.setIcon(new ImageIcon(this.getClass().getResource("/prazno.png")));
+		b2.setIcon(new ImageIcon(this.getClass().getResource("/prazno.png")));
+		b3.setIcon(new ImageIcon(this.getClass().getResource("/prazno.png")));
+		b4.setIcon(new ImageIcon(this.getClass().getResource("/prazno.png")));
+		c1.setIcon(new ImageIcon(this.getClass().getResource("/prazno.png")));
+		c2.setIcon(new ImageIcon(this.getClass().getResource("/prazno.png")));
+		c3.setIcon(new ImageIcon(this.getClass().getResource("/prazno.png")));
+		c4.setIcon(new ImageIcon(this.getClass().getResource("/prazno.png")));
+		d1.setIcon(new ImageIcon(this.getClass().getResource("/prazno.png")));
+		d2.setIcon(new ImageIcon(this.getClass().getResource("/prazno.png")));
+		d3.setIcon(new ImageIcon(this.getClass().getResource("/prazno.png")));
+		d4.setIcon(new ImageIcon(this.getClass().getResource("/prazno.png")));
+		e1.setIcon(new ImageIcon(this.getClass().getResource("/prazno.png")));
+		e2.setIcon(new ImageIcon(this.getClass().getResource("/prazno.png")));
+		e3.setIcon(new ImageIcon(this.getClass().getResource("/prazno.png")));
+		e4.setIcon(new ImageIcon(this.getClass().getResource("/prazno.png")));
+		f1.setIcon(new ImageIcon(this.getClass().getResource("/prazno.png")));
+		f2.setIcon(new ImageIcon(this.getClass().getResource("/prazno.png")));
+		f3.setIcon(new ImageIcon(this.getClass().getResource("/prazno.png")));
+		f4.setIcon(new ImageIcon(this.getClass().getResource("/prazno.png")));
+		aa.setBackground(SystemColor.inactiveCaptionBorder);
+		ab.setBackground(SystemColor.inactiveCaptionBorder);
+		ac.setBackground(SystemColor.inactiveCaptionBorder);
+		ad.setBackground(SystemColor.inactiveCaptionBorder);
+		ba.setBackground(SystemColor.inactiveCaptionBorder);
+		bb.setBackground(SystemColor.inactiveCaptionBorder);
+		bc.setBackground(SystemColor.inactiveCaptionBorder);
+		bd.setBackground(SystemColor.inactiveCaptionBorder);
+		ca.setBackground(SystemColor.inactiveCaptionBorder);
+		cb.setBackground(SystemColor.inactiveCaptionBorder);
+		cc.setBackground(SystemColor.inactiveCaptionBorder);
+		cd.setBackground(SystemColor.inactiveCaptionBorder);
+		da.setBackground(SystemColor.inactiveCaptionBorder);
+		db.setBackground(SystemColor.inactiveCaptionBorder);
+		dc.setBackground(SystemColor.inactiveCaptionBorder);
+		dd.setBackground(SystemColor.inactiveCaptionBorder);
+		ea.setBackground(SystemColor.inactiveCaptionBorder);
+		eb.setBackground(SystemColor.inactiveCaptionBorder);
+		ec.setBackground(SystemColor.inactiveCaptionBorder);
+		ed.setBackground(SystemColor.inactiveCaptionBorder);
+		fa.setBackground(SystemColor.inactiveCaptionBorder);
+		fb.setBackground(SystemColor.inactiveCaptionBorder);
+		fc.setBackground(SystemColor.inactiveCaptionBorder);
+		fd.setBackground(SystemColor.inactiveCaptionBorder);
+	}
+	private JLabel getLblReenje() {
+		if (lblReenje == null) {
+			lblReenje = new JLabel("REŠENJE");
+			lblReenje.setVisible(false);
+			lblReenje.setFont(new Font("Eras Bold ITC", Font.PLAIN, 13));
+			lblReenje.setBounds(10, 371, 61, 29);
+		}
+		return lblReenje;
 	}
 }
