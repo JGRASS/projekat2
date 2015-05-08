@@ -20,6 +20,15 @@ import javax.swing.border.EmptyBorder;
 
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.nio.Buffer;
 
 
 public class skocko extends JFrame {
@@ -203,6 +212,9 @@ public class skocko extends JFrame {
 		contentPane.add(getR3());
 		contentPane.add(getR4());
 		contentPane.add(getLblReenje());
+		contentPane.add(getLblNajboljiRezultat());
+		contentPane.add(getLblRezultatsa());
+		contentPane.add(getLblRezultat());
 		
 		setLocationRelativeTo(null);
 	}
@@ -904,7 +916,7 @@ public class skocko extends JFrame {
 			progressBar.setForeground(Color.GREEN);
 			progressBar.setValue(100);
 			progressBar.setOrientation(SwingConstants.VERTICAL);
-			progressBar.setBounds(415, 38, 41, 322);
+			progressBar.setBounds(415, 38, 41, 270);
 		}
 		return progressBar;
 	}
@@ -923,7 +935,7 @@ public class skocko extends JFrame {
 			textField.setHorizontalAlignment(SwingConstants.CENTER);
 			textField.setBackground(SystemColor.controlHighlight);
 			textField.setEditable(false);
-			textField.setBounds(415, 373, 41, 41);
+			textField.setBounds(415, 319, 41, 41);
 			textField.setColumns(10);
 		}
 		return textField;
@@ -955,6 +967,37 @@ public class skocko extends JFrame {
 			r4.setBounds(280, 370, 50, 50);
 		}
 		return r4;
+	}
+	private JLabel getLblNajboljiRezultat() {
+		if (lblNajboljiRezultat == null) {
+			lblNajboljiRezultat = new JLabel("NAJBOLJI ");
+			lblNajboljiRezultat.setFont(new Font("Eras Bold ITC", Font.PLAIN, 17));
+			lblNajboljiRezultat.setBounds(356, 396, 100, 14);
+		}
+		return lblNajboljiRezultat;
+	}
+	private JLabel getLblRezultatsa() {
+		if (lblRezultatsa == null) {
+			lblRezultatsa = new JLabel("REZULTAT:");
+			lblRezultatsa.setFont(new Font("Eras Bold ITC", Font.PLAIN, 17));
+			lblRezultatsa.setBounds(353, 409, 103, 29);
+		}
+		return lblRezultatsa;
+	}
+	private JLabel getLblRezultat() {
+		if (lblRezultat == null) {
+			lblRezultat = new JLabel("");
+			try {
+				BufferedReader in = new BufferedReader(new FileReader("rezultati.txt"));
+				String string = in.readLine();
+				lblRezultat.setText(string);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			lblRezultat.setFont(new Font("Eras Bold ITC", Font.PLAIN, 17));
+			lblRezultat.setBounds(381, 444, 46, 14);
+		}
+		return lblRezultat;
 	}
 	private JButton getBtnStart() {
 		if (btnStart == null) {
@@ -994,11 +1037,11 @@ public class skocko extends JFrame {
 				  		case 6: r4.setIcon(btnTref.getIcon()); break;
 					}
 					
-					r1.setVisible(false);
-					r2.setVisible(false);
-					r3.setVisible(false);
-					r4.setVisible(false);
-					
+//					r1.setVisible(false);
+//					r2.setVisible(false);
+//					r3.setVisible(false);
+//					r4.setVisible(false);
+//					
 					btnKaro.setEnabled(true);
 					btnZvezda.setEnabled(true);
 					btnPik.setEnabled(true);
@@ -1217,6 +1260,8 @@ public class skocko extends JFrame {
 			jOptionPane.showMessageDialog(null, "Čestitamo!!! Pogodili ste traženu kombinaciju.", "Skočko" ,
 					JOptionPane.INFORMATION_MESSAGE);
 			pogodjeno = true;
+			
+			upisiUFajl();
 		}
 		if(brojPogodjenih == 1 && brojOnihKojiNisuNaSvomMestu == 1) {
 			a.setOpaque(true);
@@ -1388,7 +1433,7 @@ public class skocko extends JFrame {
 			lblReenje = new JLabel("REŠENJE");
 			lblReenje.setVisible(false);
 			lblReenje.setFont(new Font("Eras Bold ITC", Font.PLAIN, 13));
-			lblReenje.setBounds(10, 371, 61, 29);
+			lblReenje.setBounds(10, 384, 61, 16);
 		}
 		return lblReenje;
 	}
@@ -1397,6 +1442,9 @@ public class skocko extends JFrame {
 	private int sekunda = 1000;//milisekunde
 	private int brojac = 100;
 	private Timer timer;
+	private JLabel lblNajboljiRezultat;
+	private JLabel lblRezultatsa;
+	private JLabel lblRezultat;
 	
 	public void Timer() {
 		timer = new Timer(sekunda, null);
@@ -1424,6 +1472,28 @@ public class skocko extends JFrame {
 			}
 		};
 		timer.addActionListener(actionListener);
+	}
+	
+	public void upisiUFajl() {
+		try {
+			String content = "This is the content to write into file";
+			 
+			File file = new File("/rezultati.txt");
+ 
+			// if file doesnt exists, then create it
+			if (!file.exists()) {
+				file.createNewFile();
+			}
+ 
+			FileWriter fw = new FileWriter(file.getAbsoluteFile());
+			BufferedWriter bw = new BufferedWriter(fw);
+			bw.write(content);
+			bw.close();
+ 
+//			System.out.println("Done");
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 	
 }
