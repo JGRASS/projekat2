@@ -22,13 +22,11 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.nio.Buffer;
+import java.awt.Toolkit;
 
 
 public class skocko extends JFrame {
@@ -140,6 +138,7 @@ public class skocko extends JFrame {
 	 * Create the frame.
 	 */
 	public skocko() {
+		setIconImage(Toolkit.getDefaultToolkit().getImage(skocko.class.getResource("/ikonica/skockoicon.png")));
 		setTitle("Skočko");
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -990,7 +989,8 @@ public class skocko extends JFrame {
 			try {
 				BufferedReader in = new BufferedReader(new FileReader("rezultati.txt"));
 				String string = in.readLine();
-				lblRezultat.setText(string);
+				lblRezultat.setText(string + " sec");
+				in.close();
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
@@ -1037,11 +1037,11 @@ public class skocko extends JFrame {
 				  		case 6: r4.setIcon(btnTref.getIcon()); break;
 					}
 					
-//					r1.setVisible(false);
-//					r2.setVisible(false);
-//					r3.setVisible(false);
-//					r4.setVisible(false);
-//					
+					r1.setVisible(false);
+					r2.setVisible(false);
+					r3.setVisible(false);
+					r4.setVisible(false);
+					
 					btnKaro.setEnabled(true);
 					btnZvezda.setEnabled(true);
 					btnPik.setEnabled(true);
@@ -1257,11 +1257,27 @@ public class skocko extends JFrame {
 			
 			timer.stop();
 			JOptionPane jOptionPane = new JOptionPane();
-			jOptionPane.showMessageDialog(null, "Čestitamo!!! Pogodili ste traženu kombinaciju.", "Skočko" ,
-					JOptionPane.INFORMATION_MESSAGE);
+			jOptionPane.showMessageDialog(null, "Čestitamo!!! Pogodili ste traženu kombinaciju." + "\n" + 
+			"Vaše vreme je: " +(100 - progressBar.getValue())+ " sec", "Skočko" , JOptionPane.INFORMATION_MESSAGE);
 			pogodjeno = true;
 			
-			upisiUFajl();
+			try {
+				BufferedReader in = new BufferedReader(new FileReader("rezultati.txt"));
+				String string = in.readLine();
+				if(string != null) {
+					if ((100 - progressBar.getValue()) < Integer.parseInt(string)) {
+						upisiUFajl();
+						lblRezultat.setText(String.valueOf(100 - progressBar.getValue()) + " sec");
+					}
+				} else {
+					lblRezultat.setText(String.valueOf(100 - progressBar.getValue()) + " sec");
+					upisiUFajl();
+				}
+				in.close();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			
 		}
 		if(brojPogodjenih == 1 && brojOnihKojiNisuNaSvomMestu == 1) {
 			a.setOpaque(true);
@@ -1476,21 +1492,9 @@ public class skocko extends JFrame {
 	
 	public void upisiUFajl() {
 		try {
-			String content = "This is the content to write into file";
-			 
-			File file = new File("/rezultati.txt");
- 
-			// if file doesnt exists, then create it
-			if (!file.exists()) {
-				file.createNewFile();
-			}
- 
-			FileWriter fw = new FileWriter(file.getAbsoluteFile());
-			BufferedWriter bw = new BufferedWriter(fw);
-			bw.write(content);
-			bw.close();
- 
-//			System.out.println("Done");
+			PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter("rezultati.txt")));
+			out.write(String.valueOf(100 - progressBar.getValue()));
+			out.close();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
