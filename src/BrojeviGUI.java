@@ -18,6 +18,8 @@ import java.awt.Dimension;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.JButton;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 
 public class BrojeviGUI extends JFrame {
@@ -63,10 +65,17 @@ public class BrojeviGUI extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setVisible(true);
 		Brojevi brojevi=new Brojevi(10);
+		brojevi.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				
+			}
+		});
 		brojevi.setPreferredSize(new Dimension(700, 400));
 		contentPane.add(brojevi);
 		brojevi.setLayout(null);
 		contentPane.add(getPanel(), BorderLayout.EAST);
+		
 	}
 	private JPanel getPanel() {
 		if (panel == null) {

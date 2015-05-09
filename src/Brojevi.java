@@ -7,14 +7,15 @@ import javax.swing.JPanel;
 public class Brojevi extends JPanel {
 	private Broj[] brojevi;
 	private Random random = new Random();
+	private Broj[] kliknuti;
+	private int brojacKliknutih;
 
 	public Brojevi(int velicina) {
 		brojevi = new Broj[velicina];
+		kliknuti=new Broj[velicina];
+		brojacKliknutih=0;
 		for (int i = 0; i < velicina; i++) {
 			brojevi[i] = new Broj();
-			// brojevi[i].setVrednost(random.nextInt(20));
-			// brojevi[i].setLokacija(new
-			// Point(50+random.nextInt(750),50+random.nextInt(450)));
 		}
 		podesiVrednosti();
 		podesiLokacije();
@@ -93,5 +94,15 @@ public class Brojevi extends JPanel {
 				return true;
 		}
 		return false;
+	}
+	public void proveri(int x,int y){
+		for (int i = 0; i < brojevi.length; i++) {
+			if(brojevi[i].proveri(x, y))
+				if(brojevi[brojacKliknutih].getVrednost()==brojevi[i].getVrednost()) {
+					brojacKliknutih++;
+				}
+				else
+					
+		}
 	}
 }
