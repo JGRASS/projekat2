@@ -2,32 +2,74 @@ import java.awt.Graphics;
 import java.awt.Point;
 import java.util.Random;
 
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 public class Brojevi extends JPanel {
 	private Broj[] brojevi;
 	private Random random = new Random();
-	private Broj[] kliknuti;
 	private int brojacKliknutih;
+	private boolean istekloVreme;
+	private boolean predjen;
+
+	public boolean isPredjen() {
+		return predjen;
+	}
+
+	public void setPredjen(boolean predjen) {
+		this.predjen = predjen;
+	}
 
 	public Brojevi(int velicina) {
 		brojevi = new Broj[velicina];
-		kliknuti=new Broj[velicina];
 		brojacKliknutih=0;
 		for (int i = 0; i < velicina; i++) {
 			brojevi[i] = new Broj();
 		}
+		istekloVreme=false;
 		podesiVrednosti();
 		podesiLokacije();
 		sortiraj();
 	}
+	
+	public Broj[] getBrojevi() {
+		return brojevi;
+	}
 
-	@Override
+	public void setBrojevi(Broj[] brojevi) {
+		this.brojevi = brojevi;
+	}
+
+	public Random getRandom() {
+		return random;
+	}
+
+	public void setRandom(Random random) {
+		this.random = random;
+	}
+
+	public int getBrojacKliknutih() {
+		return brojacKliknutih;
+	}
+
+	public void setBrojacKliknutih(int brojacKliknutih) {
+		this.brojacKliknutih = brojacKliknutih;
+	}
+
+	public boolean isIstekloVreme() {
+		return istekloVreme;
+	}
+
+	public void setIstekloVreme(boolean istekloVreme) {
+		this.istekloVreme = istekloVreme;
+	}
+
 	protected void paintComponent(Graphics g) {
 		super.paintComponent(g);
 		for (int i = 0; i < brojevi.length; i++) {
-
-			brojevi[i].crtaj(g);
+		//	if(!istekloVreme)
+				brojevi[i].crtaj(g);
+			//else brojevi[i].crtajPrazno(g);
 		}
 	}
 
@@ -42,16 +84,12 @@ public class Brojevi extends JPanel {
 			}
 
 			if (iMin != j) {
-				zameni(brojevi[j].getVrednost(), brojevi[iMin].getVrednost());
+				Broj a = brojevi[j];
+				brojevi[j] = brojevi[iMin];
+				brojevi[iMin] = a;
 			}
 
 		}
-	}
-
-	private void zameni(int x, int y) {
-		int a = y;
-		y = x;
-		x = a;
 	}
 
 	private void podesiVrednosti() {
@@ -95,14 +133,22 @@ public class Brojevi extends JPanel {
 		}
 		return false;
 	}
-	public void proveri(int x,int y){
+	public void proveri(int x,int y,JPanel contentPane){
 		for (int i = 0; i < brojevi.length; i++) {
 			if(brojevi[i].proveri(x, y))
 				if(brojevi[brojacKliknutih].getVrednost()==brojevi[i].getVrednost()) {
 					brojacKliknutih++;
 				}
 				else
-					
+					JOptionPane.showMessageDialog(contentPane,
+							"GRESKA", "Brojevi",
+							JOptionPane.ERROR_MESSAGE);
+		}
+		if(brojacKliknutih==brojevi.length){
+			predjen=true;
+			JOptionPane.showMessageDialog(contentPane,
+				"SVAKA CAST", "Brojevi",
+				JOptionPane.INFORMATION_MESSAGE);
 		}
 	}
 }

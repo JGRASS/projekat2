@@ -10,14 +10,19 @@ import java.awt.Rectangle;
 import java.awt.Shape;
 import java.awt.image.ImageObserver;
 import java.text.AttributedCharacterIterator;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
 import java.awt.Dimension;
+
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.JButton;
+
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
@@ -32,8 +37,10 @@ public class BrojeviGUI extends JFrame {
 	private JTextField txtTrenutniNivo;
 	private JButton btnIgraj;
 	private JButton btnIzadji;
-	
-
+	private static Brojevi brojevi;
+	private Timer timer;
+	private static int vreme=5;
+	private int nivo;
 	/**
 	 * Launch the application.
 	 */
@@ -64,18 +71,41 @@ public class BrojeviGUI extends JFrame {
 		contentPane.setLayout(new BorderLayout(0, 0));
 		setContentPane(contentPane);
 		contentPane.setVisible(true);
-		Brojevi brojevi=new Brojevi(10);
+		postavi();
+		contentPane.add(getPanel(), BorderLayout.EAST);
+		timer=new Timer();
+		TimerTask task=new TimerTask() {
+			
+			@Override
+			public void run() {
+				vreme--;
+				if(vreme==0) {
+					brojevi.setIstekloVreme(true);	
+					brojevi.repaint();
+				}
+				if (brojevi.isPredjen())
+						contentPane.remove(brojevi);
+						postavi();
+				
+			}
+		};
+		timer.schedule(task, 0,2000);
+		
+		
+		
+	}
+	private void postavi(){
+		brojevi=new Brojevi(5+nivo);
+		nivo++;
 		brojevi.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				
+				brojevi.proveri(e.getX(), e.getY(), contentPane);
 			}
 		});
 		brojevi.setPreferredSize(new Dimension(700, 400));
 		contentPane.add(brojevi);
 		brojevi.setLayout(null);
-		contentPane.add(getPanel(), BorderLayout.EAST);
-		
 	}
 	private JPanel getPanel() {
 		if (panel == null) {

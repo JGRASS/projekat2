@@ -43,5 +43,8 @@ public class Broj {
 				lokacija.y-Broj.POLUPRECNIK<=y && lokacija.y+Broj.POLUPRECNIK>=y) return true;
 		return false;
 	}
-	
+	public void crtajPrazno(Graphics g){
+		g.setColor(Color.RED);
+		g.fillOval(lokacija.x-POLUPRECNIK, lokacija.y-POLUPRECNIK, 2*POLUPRECNIK, 2*POLUPRECNIK);
+	}
 }
