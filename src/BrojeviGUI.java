@@ -218,8 +218,9 @@ public class BrojeviGUI extends JFrame {
 		try{
 			ObjectInputStream in = new ObjectInputStream(
 					new BufferedInputStream(new FileInputStream("highscore.out")));
-			
+			if(in.available()!=0)
 			 highScore=in.readInt();
+			else highScore=0;
 			
 			in.close();
 		}catch(Exception e){

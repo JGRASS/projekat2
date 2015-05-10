@@ -12,14 +12,6 @@ public class Brojevi extends JPanel {
 	private boolean istekloVreme;
 	private boolean predjen;
 
-	public boolean isPredjen() {
-		return predjen;
-	}
-
-	public void setPredjen(boolean predjen) {
-		this.predjen = predjen;
-	}
-
 	public Brojevi(int velicina) {
 		brojevi = new Broj[velicina];
 		brojacKliknutih=0;
@@ -31,6 +23,13 @@ public class Brojevi extends JPanel {
 		podesiVrednosti();	
 		sortiraj();
 		paintComponents(getGraphics());
+	}
+	public boolean isPredjen() {
+		return predjen;
+	}
+
+	public void setPredjen(boolean predjen) {
+		this.predjen = predjen;
 	}
 	
 	public Broj[] getBrojevi() {
