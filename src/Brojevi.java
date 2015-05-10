@@ -27,9 +27,10 @@ public class Brojevi extends JPanel {
 			brojevi[i] = new Broj();
 		}
 		istekloVreme=false;
-		podesiVrednosti();
 		podesiLokacije();
+		podesiVrednosti();	
 		sortiraj();
+		paintComponents(getGraphics());
 	}
 	
 	public Broj[] getBrojevi() {
@@ -39,6 +40,7 @@ public class Brojevi extends JPanel {
 	public void setBrojevi(Broj[] brojevi) {
 		this.brojevi = brojevi;
 	}
+
 
 	public Random getRandom() {
 		return random;
@@ -67,9 +69,9 @@ public class Brojevi extends JPanel {
 	protected void paintComponent(Graphics g) {
 		super.paintComponent(g);
 		for (int i = 0; i < brojevi.length; i++) {
-		//	if(!istekloVreme)
+			if(!istekloVreme)
 				brojevi[i].crtaj(g);
-			//else brojevi[i].crtajPrazno(g);
+			else brojevi[i].crtajPrazno(g);
 		}
 	}
 
@@ -113,7 +115,7 @@ public class Brojevi extends JPanel {
 
 	private void podesiLokacije() {
 		for (int i = 0; i < brojevi.length; i++) {
-			brojevi[i].setLokacija(new Point(50 + random.nextInt(600),
+			brojevi[i].setLokacija(new Point(50 + random.nextInt(550),
 					50 + random.nextInt(300)));
 			if (postoji(brojevi[i].getLokacija(), i-1)) {
 				i--;
@@ -137,12 +139,15 @@ public class Brojevi extends JPanel {
 		for (int i = 0; i < brojevi.length; i++) {
 			if(brojevi[i].proveri(x, y))
 				if(brojevi[brojacKliknutih].getVrednost()==brojevi[i].getVrednost()) {
+					brojevi[i].crtaj(getGraphics());
 					brojacKliknutih++;
 				}
-				else
+				else{
 					JOptionPane.showMessageDialog(contentPane,
 							"GRESKA", "Brojevi",
 							JOptionPane.ERROR_MESSAGE);
+					setVisible(false);
+				}
 		}
 		if(brojacKliknutih==brojevi.length){
 			predjen=true;
@@ -151,4 +156,5 @@ public class Brojevi extends JPanel {
 				JOptionPane.INFORMATION_MESSAGE);
 		}
 	}
+
 }
