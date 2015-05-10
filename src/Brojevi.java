@@ -134,6 +134,7 @@ public class Brojevi extends JPanel {
 		}
 		return false;
 	}
+	
 	public void proveri(int x,int y,JPanel contentPane){
 		for (int i = 0; i < brojevi.length; i++) {
 			if(brojevi[i].proveri(x, y))
