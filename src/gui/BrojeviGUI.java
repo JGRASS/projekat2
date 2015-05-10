@@ -109,7 +109,6 @@ public class BrojeviGUI extends JFrame {
 		getTxtTrenutniNivo();
 		timer=new Timer();
 		highScore=GUIKontoler.ucitajRez("highScoreBrojevi.out");
-		postavi();
 		TimerTask task=new TimerTask() {
 			@Override
 			public void run() {
@@ -153,6 +152,7 @@ public class BrojeviGUI extends JFrame {
 		brojevi.setPreferredSize(new Dimension(700, 400));
 		brojevi.setLayout(null);
 		brojevi.paintComponents(getGraphics());
+		if(nivo>=10) vreme=15;
 		if(nivo<10)
 			vreme=8;
 		if(nivo<7)

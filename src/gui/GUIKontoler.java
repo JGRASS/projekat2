@@ -69,16 +69,9 @@ public class GUIKontoler {
 			throw new RuntimeException(e);
 		}
 	}
-	/**
-	 * metoda koja izlazi iz igrice
-	 */
-	public static void izadji(String putanja,JFrame frame,int skor){
-		GUIKontoler.sacuvajRez(putanja,skor);
-		frame.dispose();
-	}
 	public static void prikaziAutore(JPanel contentPane){
 		JOptionPane.showMessageDialog(contentPane,
-				"Dusan Radovanovic 123/13\nAleksandar Randjelovic 121/13\n Filip Nedovic Bijelo Polje Drevni grad Samograd", "Brojevi",
+				"Dusan Radovanovic 123/13\nAleksandar Randjelovic 89/13\n Filip Nedovic Bijelo Polje Drevni grad Samograd", "Brojevi",
 				JOptionPane.INFORMATION_MESSAGE);
 	}
 }
