@@ -1,3 +1,4 @@
+package brojevi;
 import java.awt.Graphics;
 import java.awt.Point;
 import java.util.Random;
@@ -5,13 +6,35 @@ import java.util.Random;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
+/**
+* Predstavlja JPanel gde se iscrtavaju krugovi
+* 
+* @author Dusan Radovanovic
+*
+*/
 public class Brojevi extends JPanel {
+	/**
+	 * niz Brojeva
+	 */
 	private Broj[] brojevi;
 	private Random random = new Random();
+	/**
+	 * broj klikova na krugovima
+	 */
 	private int brojacKliknutih;
+	/**
+	 * ukazuje na to da li je proslo dovoljno vremena da se pogledaju krugovi
+	 */
 	private boolean istekloVreme;
+	/**
+	 * ukazuje na to da li su svi krugovi kliknuti pravim redosledom
+	 */
 	private boolean predjen;
-
+	/**
+	 * metoda pravi novi objekat klase Brojevi sa nizom velicine koja je data preko parametra
+	 * @param velicina velicina niza brojeva
+	 */
+	
 	public Brojevi(int velicina) {
 		brojevi = new Broj[velicina];
 		brojacKliknutih=0;
@@ -24,47 +47,38 @@ public class Brojevi extends JPanel {
 		sortiraj();
 		paintComponents(getGraphics());
 	}
+	/**
+	 * Metoda pokazuje da li je predjen nivo 
+	 * @return da li je nivo predjen kao boolean
+	 */
 	public boolean isPredjen() {
 		return predjen;
 	}
-
-	public void setPredjen(boolean predjen) {
-		this.predjen = predjen;
-	}
-	
-	public Broj[] getBrojevi() {
+	/**
+	 * Metoda vraca niz Broj-eva
+	 * @return niz Broj-eva
+	 */
+	public Broj[] getBrojevi(){
 		return brojevi;
 	}
-
-	public void setBrojevi(Broj[] brojevi) {
-		this.brojevi = brojevi;
-	}
-
-
-	public Random getRandom() {
-		return random;
-	}
-
-	public void setRandom(Random random) {
-		this.random = random;
-	}
-
+	/**
+	 * Metoda vraca broj puta koliko su krugovi kliknuti
+	 * @return broj puta koliko su krugovi kliknuti
+	 */
 	public int getBrojacKliknutih() {
 		return brojacKliknutih;
 	}
-
-	public void setBrojacKliknutih(int brojacKliknutih) {
-		this.brojacKliknutih = brojacKliknutih;
-	}
-
-	public boolean isIstekloVreme() {
-		return istekloVreme;
-	}
-
+	/**
+	 * Metoda postavlja da li je isteklo vreme za gledanje
+	 * @param istekloVreme da li je isteklo vreme za gledanje
+	 */
 	public void setIstekloVreme(boolean istekloVreme) {
 		this.istekloVreme = istekloVreme;
 	}
-
+	/**
+	 * Metoda crta krugove
+	 * @param g graficka komponenta
+	 */
 	protected void paintComponent(Graphics g) {
 		super.paintComponent(g);
 		for (int i = 0; i < brojevi.length; i++) {
@@ -73,7 +87,9 @@ public class Brojevi extends JPanel {
 			else brojevi[i].crtajPrazno(g);
 		}
 	}
-
+	/**
+	 * Metoda sortira niz Broj-eva u rastucem redosledu
+	 */
 	private void sortiraj() {
 		int iMin;
 		for (int j = 0; j < brojevi.length; j++) {
@@ -92,7 +108,9 @@ public class Brojevi extends JPanel {
 
 		}
 	}
-
+	/**
+	 * Metoda zadaje vrednosti svim Broj-evima u krugu
+	 */
 	private void podesiVrednosti() {
 		for (int i = 0; i < brojevi.length; i++) {
 			brojevi[i].setVrednost(random.nextInt(30));
@@ -101,7 +119,12 @@ public class Brojevi extends JPanel {
 			}
 		}
 	}
-
+	/**
+	 * Metoda proverava da li se zadata vrednost nalazi u nizu
+	 * @param x vrednost koja se proverava
+	 * @param j mesto od kog se proverava niz od kraja ka pocetku
+	 * @return da li se vrednost nalazi u nizu kao boolean
+	 */
 	private boolean postoji(int x, int j) {
 		if (x == 0)
 			return true;
@@ -111,7 +134,9 @@ public class Brojevi extends JPanel {
 		}
 		return false;
 	}
-
+	/**
+	 * Metoda zadaje lokacije svim Broj-evima u krugu
+	 */
 	private void podesiLokacije() {
 		for (int i = 0; i < brojevi.length; i++) {
 			brojevi[i].setLokacija(new Point(50 + random.nextInt(550),
@@ -121,7 +146,12 @@ public class Brojevi extends JPanel {
 			}
 		}
 	}
-
+	/**
+	 * Metoda proverava da li se dva kruga poklapaju
+	 * @param lokacija lokacija koja se proverava
+	 * @param j mesto od kog se proverava niz od kraja ka pocetku
+	 * @return da li se lokacija nalazi u nizu kao boolean
+	 */
 	private boolean postoji(Point lokacija, int j) {
 		int x = lokacija.x;
 		int y = lokacija.y;
@@ -134,7 +164,12 @@ public class Brojevi extends JPanel {
 		}
 		return false;
 	}
-	
+	/**
+	 * Metoda proverava da li se kliknulo na neki krug iz niza
+	 * @param x x-koodinata klika
+	 * @param y y-koordinata klika
+	 * @param contentPane panel na osnovu koga se izbacuju dodatni prozori
+	 */
 	public void proveri(int x,int y,JPanel contentPane){
 		for (int i = 0; i < brojevi.length; i++) {
 			if(brojevi[i].proveri(x, y))

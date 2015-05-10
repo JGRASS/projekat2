@@ -1,8 +1,12 @@
+package brojevi;
 import static org.junit.Assert.*;
 
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+
+import brojevi.Broj;
+import brojevi.Brojevi;
 
 public class BrojeviTest {
 	Brojevi b;

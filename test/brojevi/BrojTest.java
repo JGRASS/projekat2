@@ -1,3 +1,4 @@
+package brojevi;
 import static org.junit.Assert.*;
 
 import java.awt.Point;
@@ -5,6 +6,8 @@ import java.awt.Point;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+
+import brojevi.Broj;
 
 
 public class BrojTest {

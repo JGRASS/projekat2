@@ -1,14 +1,19 @@
+package brojevi;
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
 import java.util.Timer;
 import java.util.TimerTask;
+
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
 import java.awt.Dimension;
+
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.JButton;
+
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.ActionListener;
@@ -24,19 +29,57 @@ import java.io.ObjectOutputStream;
 
 
 public class BrojeviGUI extends JFrame {
-
+	/**
+	 * panel koji sadrzi ceo izgled igrice
+	 */
 	private JPanel contentPane;
+	/**
+	 * panel koji sadrzi dugmice i informacije o rezultatu
+	 */
 	private JPanel panel;
-	private JLabel lblNajveciNivo;
-	private JTextField txtNajveciNivo;
+	/**
+	 * labela HighScore
+	 */
+	private JLabel lblHighScore;
+	/**
+	 * polje gde pise najbolji rezultat
+	 */
+	private JTextField txtHighScore;
+	/**
+	 * labela Trenutni nivo
+	 */
 	private JLabel lblTrenutniNivo;
+	/**
+	 * polje gde pise trenutni rezultat
+	 */
 	private JTextField txtTrenutniNivo;
+	/**
+	 * dugme koje resetuje igru
+	 */
 	private JButton btnIgraj;
+	/**
+	 * dugme koje izlazi iz igrice
+	 */
 	private JButton btnIzadji;
+	/**
+	 * Brojevi koji se postavljaju i pogadjaju
+	 */
 	private  Brojevi brojevi;
+	/**
+	 * tajmer
+	 */
 	private Timer timer;
+	/**
+	 * broj sekundi koliko se gleda u brojeve
+	 */
 	private int vreme;
+	/**
+	 * trenutni nivo
+	 */
 	private int nivo;
+	/**
+	 * najbolji ostvaren nivo
+	 */
 	private int highScore;
 	/**
 	 * Launch the application.
@@ -77,6 +120,8 @@ public class BrojeviGUI extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setVisible(true);
 		contentPane.add(getPanel(), BorderLayout.EAST);
+		getTxtHighScore();
+		getTxtTrenutniNivo();
 		timer=new Timer();
 		ucitajRez();
 		postavi();
@@ -96,15 +141,16 @@ public class BrojeviGUI extends JFrame {
 		
 		
 	}
+	/**
+	 * metoda koja postavlja nove brojeve na ekran
+	 */
 	private void postavi(){
 		if(brojevi!=null) brojevi.setVisible(false);
 		brojevi=new Brojevi(5+nivo);
-		getTxtNajveciNivo();
-		getTxtTrenutniNivo();
 		brojevi.setVisible(true);
 		if(nivo>highScore) highScore=nivo;
 		txtTrenutniNivo.setText(Integer.toString(nivo));
-		txtNajveciNivo.setText(Integer.toString(highScore));		
+		txtHighScore.setText(Integer.toString(highScore));		
 		nivo++;		
 		brojevi.setEnabled(false);
 		brojevi.addMouseListener(new MouseAdapter() {
@@ -135,8 +181,8 @@ public class BrojeviGUI extends JFrame {
 			panel = new JPanel();
 			panel.setPreferredSize(new Dimension(150, 10));
 			panel.setLayout(null);
-			panel.add(getLblNajveciNivo());
-			panel.add(getTxtNajveciNivo());
+			panel.add(getLblHighScore());
+			panel.add(getTxtHighScore());
 			panel.add(getLblTrenutniNivo());
 			panel.add(getTxtTrenutniNivo());
 			panel.add(getBtnIgraj());
@@ -144,21 +190,21 @@ public class BrojeviGUI extends JFrame {
 		}
 		return panel;
 	}
-	private JLabel getLblNajveciNivo() {
-		if (lblNajveciNivo == null) {
-			lblNajveciNivo = new JLabel("Najveci nivo");
-			lblNajveciNivo.setBounds(21, 5, 105, 14);
+	private JLabel getLblHighScore() {
+		if (lblHighScore == null) {
+			lblHighScore = new JLabel("HighScore");
+			lblHighScore.setBounds(21, 5, 105, 14);
 		}
-		return lblNajveciNivo;
+		return lblHighScore;
 	}
-	private JTextField getTxtNajveciNivo() {
-		if (txtNajveciNivo == null) {
-			txtNajveciNivo = new JTextField();
-			txtNajveciNivo.setEnabled(false);
-			txtNajveciNivo.setBounds(21, 24, 105, 20);
-			txtNajveciNivo.setColumns(10);
+	private JTextField getTxtHighScore() {
+		if (txtHighScore == null) {
+			txtHighScore = new JTextField();
+			txtHighScore.setEnabled(false);
+			txtHighScore.setBounds(21, 24, 105, 20);
+			txtHighScore.setColumns(10);
 		}
-		return txtNajveciNivo;
+		return txtHighScore;
 	}
 	private JLabel getLblTrenutniNivo() {
 		if (lblTrenutniNivo == null) {
@@ -201,6 +247,9 @@ public class BrojeviGUI extends JFrame {
 		}
 		return btnIzadji;
 	}
+	/**
+	 * metoda koja cuva najbolji rezultat
+	 */
 	private void sacuvajRez(){
 		try{
 			ObjectOutputStream out = new ObjectOutputStream(
@@ -214,6 +263,9 @@ public class BrojeviGUI extends JFrame {
 			throw new RuntimeException(e);
 		}
 	}
+	/**
+	 * metoda koja ucitava najbolji rezultat
+	 */
 	private void ucitajRez(){
 		try{
 			ObjectInputStream in = new ObjectInputStream(
@@ -227,6 +279,9 @@ public class BrojeviGUI extends JFrame {
 			throw new RuntimeException(e);
 		}
 	}
+	/**
+	 * metoda koja izlazi iz igrice
+	 */
 	public void izadji(){
 		sacuvajRez();
 		dispose();		
