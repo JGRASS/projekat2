@@ -1,3 +1,4 @@
+package skocko;
 import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.Font;
@@ -1273,8 +1274,7 @@ public class skocko extends JFrame {
 			lblReenje.setVisible(true);
 			
 			timer.stop();
-			JOptionPane jOptionPane = new JOptionPane();
-			jOptionPane.showMessageDialog(null, "Čestitamo!!! Pogodili ste traženu kombinaciju." + "\n" + 
+			JOptionPane.showMessageDialog(null, "Čestitamo!!! Pogodili ste traženu kombinaciju." + "\n" + 
 			"Vaše vreme je: " +(100 - progressBar.getValue())+ " sec", "Skočko" , JOptionPane.INFORMATION_MESSAGE);
 			pogodjeno = true;
 			try{
@@ -1399,8 +1399,7 @@ public class skocko extends JFrame {
 			f3enabled = false;
 			if(!pogodjeno) {
 				timer.stop();
-				JOptionPane jOptionPane = new JOptionPane();
-				jOptionPane.showMessageDialog(null, "Više sreće drugi put! :( ", "Skočko" ,
+				JOptionPane.showMessageDialog(null, "Više sreće drugi put! :( ", "Skočko" ,
 						JOptionPane.INFORMATION_MESSAGE);
 				r1.setVisible(true);
 				r2.setVisible(true);
@@ -1498,8 +1497,7 @@ public class skocko extends JFrame {
             	if(brojac <= 10) progressBar.setForeground(Color.red);
             	else progressBar.setForeground(Color.green);
             	if(brojac == 0) {
-            		JOptionPane jOptionPane = new JOptionPane();
-        			jOptionPane.showMessageDialog(null, "Vreme je isteklo. ", "Skočko" ,
+            		JOptionPane.showMessageDialog(null, "Vreme je isteklo. ", "Skočko" ,
         					JOptionPane.INFORMATION_MESSAGE);
         			timer.stop();
             	}
