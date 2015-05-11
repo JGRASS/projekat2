@@ -16,11 +16,11 @@ import javax.swing.JPanel;
 import javax.swing.border.LineBorder;
 
 public class MemoryPanel extends JPanel implements Serializable {
-	public final static int X_OFFSET = 5; 
-	public final static int Y_OFFSET = 5; 
-	public final static int X_INDENT = 5; 
-	public final static int Y_INDENT = 5; 
-	public int row = 4; 
+	public final static int X_OFFSET = 5;
+	public final static int Y_OFFSET = 5;
+	public final static int X_INDENT = 5;
+	public final static int Y_INDENT = 5;
+	public int row = 4;
 	public int col = 4;
 
 	private Image currentImage;
@@ -107,8 +107,8 @@ public class MemoryPanel extends JPanel implements Serializable {
 	}
 
 	public void paintComponent(Graphics g) {
-		super.paintComponent(g); 
-		
+		super.paintComponent(g);
+
 		int width = this.getWidth() - X_OFFSET - X_INDENT;
 		int height = this.getHeight() - Y_OFFSET - Y_INDENT;
 		g.drawImage(currentImage, X_OFFSET, Y_OFFSET, width, height, this);
@@ -124,7 +124,7 @@ public class MemoryPanel extends JPanel implements Serializable {
 			lbl[secondPick].setText("");
 			lbl[firstPick].setEnabled(false);
 			lbl[secondPick].setEnabled(false);
-		} else { 
+		} else {
 			lbl[firstPick].setText(Integer.toString(firstPick + 1));
 			lbl[secondPick].setText(Integer.toString(secondPick + 1));
 		}
@@ -132,7 +132,45 @@ public class MemoryPanel extends JPanel implements Serializable {
 	}
 
 	private void mouseClickedHandler(MouseEvent e) {
-		
+		if (ignoreInput)
+			return;
+
+		JLabel l = null;
+
+		int index = -1;
+
+		for (int i = 0; i < row * col; i++) {
+			if (e.getSource() == lbl[i]) {
+				l = lbl[i];
+				index = i;
+
+				if (!l.isOpaque())
+					return;
+
+				l.setText(match[i]);
+				break;
+			}
+		}
+
+		if (l == null)
+			return;
+
+		selectCounter++;
+		if (selectCounter == 1) {
+			firstPick = index;
+		}
+		if (selectCounter == 2) {
+			if (firstPick == index) {
+				selectCounter--;
+				return;
+			}
+
+			selectCounter = 0;
+			secondPick = index;
+			ignoreInput = true;
+			displayDelay.start();
+		}
+
 	}
 
 	private void initComponents() {
