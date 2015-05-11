@@ -12,7 +12,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-
+import memorygame.MemoryGame;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -66,6 +66,8 @@ public class MemoryPanel extends JPanel implements Serializable {
 	 */
 	private Timer displayDelay;
 	private boolean ignoreInput = false;
+	private int hits = 0;
+	private int misses = 0;
 
 	/**
 	 * Konstruktor kojim se kreira panel.
@@ -193,9 +195,13 @@ public class MemoryPanel extends JPanel implements Serializable {
 			lbl[secondPick].setText("");
 			lbl[firstPick].setEnabled(false);
 			lbl[secondPick].setEnabled(false);
+			hits++;
+			MemoryGame.getLblHitsVal().setText(hits + "");
 		} else {
 			lbl[firstPick].setText(Integer.toString(firstPick + 1));
 			lbl[secondPick].setText(Integer.toString(secondPick + 1));
+			misses++;
+			MemoryGame.getLblMissesVal().setText(misses + "");
 		}
 		ignoreInput = false;
 	}
@@ -224,6 +230,7 @@ public class MemoryPanel extends JPanel implements Serializable {
 					return;
 
 				l.setText(match[i]);
+
 				break;
 			}
 		}
@@ -247,6 +254,22 @@ public class MemoryPanel extends JPanel implements Serializable {
 			displayDelay.start();
 		}
 
+	}
+
+	public int getHits() {
+		return hits;
+	}
+
+	public void setHits(int hits) {
+		this.hits = hits;
+	}
+
+	public int getMisses() {
+		return misses;
+	}
+
+	public void setMisses(int misses) {
+		this.misses = misses;
 	}
 
 }

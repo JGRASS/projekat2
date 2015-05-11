@@ -31,6 +31,10 @@ public class MemoryGame extends javax.swing.JFrame {
 	 * Dugme za novu igru.
 	 */
 	private JButton btnNewButton;
+	private JLabel lblHits;
+	private JLabel lblMisses;
+	private static JLabel lblHitsVal;
+	private static JLabel lblMissesVal;
 
 	/** Konstruktor za kreiranje prozora sa igricom */
 	public MemoryGame() {
@@ -65,6 +69,26 @@ public class MemoryGame extends javax.swing.JFrame {
 		getContentPane().add(jLabel2);
 		jLabel2.setBounds(250, 60, 210, 50);
 		getContentPane().add(getBtnNewButton());
+		
+		lblHits = new JLabel("Hits:");
+		lblHits.setFont(new Font("Tahoma", Font.BOLD, 16));
+		lblHits.setBounds(250, 132, 46, 14);
+		getContentPane().add(lblHits);
+		
+		lblMisses = new JLabel("Misses:");
+		lblMisses.setFont(new Font("Tahoma", Font.BOLD, 16));
+		lblMisses.setBounds(250, 176, 62, 14);
+		getContentPane().add(lblMisses);
+		
+		lblHitsVal = new JLabel("0");
+		lblHitsVal.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		lblHitsVal.setBounds(291, 132, 46, 14);
+		getContentPane().add(lblHitsVal);
+		
+		lblMissesVal = new JLabel("0");
+		lblMissesVal.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		lblMissesVal.setBounds(320, 178, 46, 14);
+		getContentPane().add(lblMissesVal);
 		java.awt.Dimension screenSize = java.awt.Toolkit.getDefaultToolkit()
 				.getScreenSize();
 		setBounds((screenSize.width - 486) / 2, (screenSize.height - 287) / 2,
@@ -100,6 +124,18 @@ public class MemoryGame extends javax.swing.JFrame {
 			btnNewButton.setBounds(250, 201, 220, 39);
 		}
 		return btnNewButton;
+	}
+	public static JLabel getLblHitsVal() {
+		return lblHitsVal;
+	}
+	public void setLblHitsVal(JLabel lblHitsVal) {
+		this.lblHitsVal = lblHitsVal;
+	}
+	public static JLabel getLblMissesVal() {
+		return lblMissesVal;
+	}
+	public void setLblMissesVal(JLabel lblMissesVal) {
+		this.lblMissesVal = lblMissesVal;
 	}
 	
 
