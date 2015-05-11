@@ -56,6 +56,11 @@ public class IgriceGUI extends JFrame {
 	private JButton getBtnSkocko() {
 		if (btnSkocko == null) {
 			btnSkocko = new JButton("SKOCKO");
+			btnSkocko.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent arg0) {
+					GUIKontoler.prikaziSkocko();
+				}
+			});
 			btnSkocko.setBounds(32, 38, 108, 79);
 		}
 		return btnSkocko;

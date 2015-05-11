@@ -12,6 +12,8 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
+import skocko.Skocko;
+
 public class GUIKontoler {
 	private static IgriceGUI igrice;
 	public static void main(String[] args) {
@@ -25,6 +27,11 @@ public class GUIKontoler {
 				}
 			}
 		});
+	}
+	public static void prikaziSkocko() {
+		Skocko prozor = new Skocko();
+		prozor.setLocationRelativeTo(null);
+		prozor.setVisible(true);
 	}
 	public static void prikaziBrojeviGUI() {
 		BrojeviGUI prozor = new BrojeviGUI();
