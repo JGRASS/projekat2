@@ -35,7 +35,7 @@ import java.awt.Toolkit;
 * @author Aleksandar Randjelovic
 * @version 1.0
 */
-public class skocko extends JFrame {
+public class Skocko extends JFrame {
 	/**
 	 * Panel na kome se sve nalazi
 	 */
@@ -212,8 +212,8 @@ public class skocko extends JFrame {
 	/**
 	 * Kreira se prozor.
 	 */
-	public skocko() {
-		setIconImage(Toolkit.getDefaultToolkit().getImage(skocko.class.getResource("/skocko/skockoicon.png")));
+	public Skocko() {
+		setIconImage(Toolkit.getDefaultToolkit().getImage(Skocko.class.getResource("/skocko/skockoicon.png")));
 		setTitle("Skočko");
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
