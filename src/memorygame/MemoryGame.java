@@ -3,11 +3,15 @@ package memorygame;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.Font;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.Color;
+import java.awt.Cursor;
 
 public class MemoryGame extends javax.swing.JFrame {
 	/**
@@ -35,9 +39,11 @@ public class MemoryGame extends javax.swing.JFrame {
 	private JLabel lblMisses;
 	private static JLabel lblHitsVal;
 	private static JLabel lblMissesVal;
+	private JButton btnNewButton_1;
 
 	/** Konstruktor za kreiranje prozora sa igricom */
 	public MemoryGame() {
+		getContentPane().setBackground(new Color(255, 255, 102));
 		setResizable(false);
 		initComponents();
 
@@ -49,6 +55,7 @@ public class MemoryGame extends javax.swing.JFrame {
 	 */
 	private void initComponents() {
 		mp = new MemoryPanel();
+		mp.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		jLabel1 = new javax.swing.JLabel();
 		jLabel2 = new javax.swing.JLabel();
 		getContentPane().setLayout(null);
@@ -89,6 +96,18 @@ public class MemoryGame extends javax.swing.JFrame {
 		lblMissesVal.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		lblMissesVal.setBounds(320, 178, 46, 14);
 		getContentPane().add(lblMissesVal);
+		
+		btnNewButton_1 = new JButton("Record");
+		btnNewButton_1.setBackground(new Color(255, 100, 51));
+		btnNewButton_1.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		btnNewButton_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				new JOptionPane().showMessageDialog(getParent(), "Smallest number of misses: " +MemoryPanel.getRecordMisses());
+			}
+		});
+		btnNewButton_1.setFont(new Font("Tahoma", Font.BOLD, 16));
+		btnNewButton_1.setBounds(365, 130, 105, 60);
+		getContentPane().add(btnNewButton_1);
 		java.awt.Dimension screenSize = java.awt.Toolkit.getDefaultToolkit()
 				.getScreenSize();
 		setBounds((screenSize.width - 486) / 2, (screenSize.height - 287) / 2,
@@ -111,6 +130,8 @@ public class MemoryGame extends javax.swing.JFrame {
 	private JButton getBtnNewButton() {
 		if (btnNewButton == null) {
 			btnNewButton = new JButton("New Game");
+			btnNewButton.setBackground(new Color(255, 153, 51));
+			btnNewButton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 			btnNewButton.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent arg0) {
 
