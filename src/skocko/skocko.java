@@ -1501,6 +1501,10 @@ public class skocko extends JFrame {
         					JOptionPane.INFORMATION_MESSAGE);
         			timer.stop();
             	}
+            	r1.setVisible(true);
+            	r2.setVisible(true);
+            	r3.setVisible(true);
+            	r4.setVisible(true);
 			}
 		};
 		timer.addActionListener(actionListener);
