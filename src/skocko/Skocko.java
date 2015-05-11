@@ -216,7 +216,7 @@ public class Skocko extends JFrame {
 		setIconImage(Toolkit.getDefaultToolkit().getImage(Skocko.class.getResource("/skocko/skockoicon.png")));
 		setTitle("Skočko");
 		setResizable(false);
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 486, 509);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -1819,11 +1819,12 @@ public class Skocko extends JFrame {
             		JOptionPane.showMessageDialog(null, "Vreme je isteklo. ", "Skočko" ,
         					JOptionPane.INFORMATION_MESSAGE);
         			timer.stop();
+        			r1.setVisible(true);
+                	r2.setVisible(true);
+                	r3.setVisible(true);
+                	r4.setVisible(true);
             	}
-            	r1.setVisible(true);
-            	r2.setVisible(true);
-            	r3.setVisible(true);
-            	r4.setVisible(true);
+            	
 			}
 		};
 		timer.addActionListener(actionListener);

@@ -19,6 +19,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.SwingConstants;
 import javax.swing.Timer;
 import javax.swing.border.LineBorder;
 
@@ -122,11 +123,10 @@ public class MemoryPanel extends JPanel implements Serializable {
 			match[i] = matchList.get(i);
 
 			lbl[i] = new JLabel();
-			lbl[i].setText(Integer.toString(i + 1));
 			lbl[i].setFont(new Font("SansSerif", Font.BOLD, 24));
 			lbl[i].setOpaque(true);
-			lbl[i].setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-			lbl[i].setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+			lbl[i].setHorizontalTextPosition(SwingConstants.CENTER);
+			lbl[i].setHorizontalAlignment(SwingConstants.CENTER);
 			lbl[i].setForeground(Color.black);
 			lbl[i].setBorder(new LineBorder(Color.black));
 			lbl[i].addMouseListener(new MouseAdapter() {
@@ -186,7 +186,7 @@ public class MemoryPanel extends JPanel implements Serializable {
 
 	/**
 	 * Metoda koja omogucava prikaz slike koja se nalazi iza kartica, kada dodje
-	 * do brisanja istih karitca
+	 * do brisanja istih kartica
 	 * 
 	 * @param g
 	 */
@@ -216,22 +216,21 @@ public class MemoryPanel extends JPanel implements Serializable {
 			MemoryGame.getLblHitsVal().setText(hits + "");
 			if(hits == 8) {
 				firstGame = true;
-				JOptionPane jop = new JOptionPane();
 				if(firstGame) {
 					recordMisses = getMisses();
-					jop.showMessageDialog(getParent(), "CONGRATULATIONS! YOU WIN!");
+					JOptionPane.showMessageDialog(getParent(), "CONGRATULATIONS! YOU WIN!");
 				} else if(getMisses() < recordMisses) {
 					recordMisses = getMisses();
-					jop.showMessageDialog(getParent(), "CONGRATULATIONS! YOU WIN WITH NEW RECORD!");
+					JOptionPane.showMessageDialog(getParent(), "CONGRATULATIONS! YOU WIN WITH NEW RECORD!");
 				} else {
-					jop.showMessageDialog(getParent(), "CONGRATULATIONS! YOU WIN!");
+					JOptionPane.showMessageDialog(getParent(), "CONGRATULATIONS! YOU WIN!");
 				}
 				
 				
 			}
 		} else {
-			lbl[firstPick].setText(Integer.toString(firstPick + 1));
-			lbl[secondPick].setText(Integer.toString(secondPick + 1));
+			lbl[firstPick].setText("");
+			lbl[secondPick].setText("");
 			misses++;
 			MemoryGame.getLblMissesVal().setText(misses + "");
 			

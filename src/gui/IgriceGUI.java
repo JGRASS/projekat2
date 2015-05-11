@@ -49,6 +49,11 @@ public class IgriceGUI extends JFrame {
 	private JButton getBtnMemorija() {
 		if (btnMemorija == null) {
 			btnMemorija = new JButton("MEMORIJA");
+			btnMemorija.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent arg0) {
+					GUIKontoler.prikaziMemoriju();
+				}
+			});
 			btnMemorija.setBounds(223, 38, 108, 79);
 		}
 		return btnMemorija;

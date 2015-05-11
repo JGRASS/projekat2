@@ -56,7 +56,7 @@ public class MemoryGame extends javax.swing.JFrame {
 		setResizable(false);
 		initComponents();
 
-		bkgndIcon = new ImageIcon("resources/bojan.jpg");
+		bkgndIcon = new ImageIcon("src/memorygame/bojan.jpg");
 		mp.displayImage(bkgndIcon);
 	}
 	/**
@@ -121,19 +121,6 @@ public class MemoryGame extends javax.swing.JFrame {
 				.getScreenSize();
 		setBounds((screenSize.width - 486) / 2, (screenSize.height - 287) / 2,
 				486, 287);
-	}
-	/**
-	 * Main metoda koja poziva novi prozor sa igricom.
-	 * @param args
-	 */
-	public static void main(String args[]) {
-		java.awt.EventQueue.invokeLater(new Runnable() {
-			public void run() {
-
-				new MemoryGame().setVisible(true);
-
-			}
-		});
 	}
 
 	private JButton getBtnNewGame() {

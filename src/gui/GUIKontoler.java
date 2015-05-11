@@ -12,6 +12,7 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
+import memorygame.MemoryGame;
 import skocko.Skocko;
 
 public class GUIKontoler {
@@ -35,6 +36,11 @@ public class GUIKontoler {
 	}
 	public static void prikaziBrojeviGUI() {
 		BrojeviGUI prozor = new BrojeviGUI();
+		prozor.setLocationRelativeTo(null);
+		prozor.setVisible(true);
+	}
+	public static void prikaziMemoriju() {
+		MemoryGame prozor = new MemoryGame();
 		prozor.setLocationRelativeTo(null);
 		prozor.setVisible(true);
 	}
