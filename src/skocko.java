@@ -5,6 +5,7 @@ import java.awt.SystemColor;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Random;
+import java.util.Scanner;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -20,12 +21,23 @@ import javax.swing.border.EmptyBorder;
 
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.io.BufferedInputStream;
+import java.io.BufferedOutputStream;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.io.PrintWriter;
+import java.net.URISyntaxException;
 import java.awt.Toolkit;
 
 
@@ -117,6 +129,8 @@ public class skocko extends JFrame {
 	boolean f2enabled = false;
 	boolean f3enabled = false;
 	private JLabel lblReenje;
+	
+	boolean prviPut = false;
 	
 	/**
 	 * Launch the application.
@@ -986,16 +1000,19 @@ public class skocko extends JFrame {
 	private JLabel getLblRezultat() {
 		if (lblRezultat == null) {
 			lblRezultat = new JLabel("");
-			try {
-				BufferedReader in = new BufferedReader(new FileReader("rezultati.txt"));
-				String string = in.readLine();
-				lblRezultat.setText(string + " sec");
-				in.close();
-			} catch (Exception e) {
-				e.printStackTrace();
+			lblRezultat.setHorizontalAlignment(SwingConstants.CENTER);
+			if(prviPut) {
+				try{
+					ObjectInputStream in = new ObjectInputStream(new BufferedInputStream(new FileInputStream("rezultat.out")));
+					int rez = in.readInt();
+					lblRezultat.setText(String.valueOf(rez) + " sec");
+					in.close();
+				}catch(Exception e){
+					e.printStackTrace();
+				}
 			}
 			lblRezultat.setFont(new Font("Eras Bold ITC", Font.PLAIN, 17));
-			lblRezultat.setBounds(381, 444, 46, 14);
+			lblRezultat.setBounds(340, 444, 116, 14);
 		}
 		return lblRezultat;
 	}
@@ -1181,7 +1198,7 @@ public class skocko extends JFrame {
 		niz[1] = brojOnihKojiNisuNaSvomMestu;
 		return niz;
 	}
-	
+	int rezultat = 0;
 	public void krajReda(JButton button, JLabel poslednji, JLabel a, JLabel b, JLabel c, JLabel d,
 			JLabel x, JLabel y, JLabel z, JLabel w) {
 		poslednji.setIcon(button.getIcon());
@@ -1260,24 +1277,25 @@ public class skocko extends JFrame {
 			jOptionPane.showMessageDialog(null, "Čestitamo!!! Pogodili ste traženu kombinaciju." + "\n" + 
 			"Vaše vreme je: " +(100 - progressBar.getValue())+ " sec", "Skočko" , JOptionPane.INFORMATION_MESSAGE);
 			pogodjeno = true;
-			
-			try {
-				BufferedReader in = new BufferedReader(new FileReader("rezultati.txt"));
-				String string = in.readLine();
-				if(string != null) {
-					if ((100 - progressBar.getValue()) < Integer.parseInt(string)) {
+			try{
+				if(!prviPut) {
+					upisiUFajl();
+					lblRezultat.setText(String.valueOf(100 - progressBar.getValue()) + " sec");
+					prviPut = true;
+				} else {
+					ObjectInputStream in = new ObjectInputStream(new BufferedInputStream(new FileInputStream("rezultat.out")));
+					int rez = in.readInt();
+					if ((100 - progressBar.getValue()) < rez) {
 						upisiUFajl();
 						lblRezultat.setText(String.valueOf(100 - progressBar.getValue()) + " sec");
 					}
-				} else {
-					lblRezultat.setText(String.valueOf(100 - progressBar.getValue()) + " sec");
-					upisiUFajl();
+					in.close();
 				}
-				in.close();
-			} catch (Exception e) {
-				e.printStackTrace();
+//				
+				
+			}catch(Exception e){
+				throw new RuntimeException(e);
 			}
-			
 		}
 		if(brojPogodjenih == 1 && brojOnihKojiNisuNaSvomMestu == 1) {
 			a.setOpaque(true);
@@ -1492,12 +1510,12 @@ public class skocko extends JFrame {
 	
 	public void upisiUFajl() {
 		try {
-			PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter("rezultati.txt")));
-			out.write(String.valueOf(100 - progressBar.getValue()));
+			ObjectOutputStream out = new ObjectOutputStream(new BufferedOutputStream(new FileOutputStream("rezultat.out")));
+			out.writeInt(100 - progressBar.getValue());
 			out.close();
-		} catch (IOException e) {
-			e.printStackTrace();
+		} catch(Exception e) {
+			throw new RuntimeException(e);
 		}
+
 	}
-	
 }
