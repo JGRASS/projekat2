@@ -12,12 +12,16 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+
 import memorygame.MemoryGame;
+
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 import javax.swing.border.LineBorder;
+
 import java.awt.GridLayout;
 
 /**
@@ -66,9 +70,22 @@ public class MemoryPanel extends JPanel implements Serializable {
 	 */
 	private Timer displayDelay;
 	private boolean ignoreInput = false;
+	/**
+	 * Broj pogodaka
+	 */
 	private int hits = 0;
+	/**
+	 * Broj promasaja
+	 */
 	private int misses = 0;
-
+	/**
+	 * Najmanji broj promasaja 
+	 */
+	private static int recordMisses = 0;
+	/**
+	 * Pokazuje da li je odigrana igra odigrana makar jednom
+	 */
+	private boolean firstGame = false;
 	/**
 	 * Konstruktor kojim se kreira panel.
 	 */
@@ -197,11 +214,27 @@ public class MemoryPanel extends JPanel implements Serializable {
 			lbl[secondPick].setEnabled(false);
 			hits++;
 			MemoryGame.getLblHitsVal().setText(hits + "");
+			if(hits == 8) {
+				firstGame = true;
+				JOptionPane jop = new JOptionPane();
+				if(firstGame) {
+					recordMisses = getMisses();
+					jop.showMessageDialog(getParent(), "CONGRATULATIONS! YOU WIN!");
+				} else if(getMisses() < recordMisses) {
+					recordMisses = getMisses();
+					jop.showMessageDialog(getParent(), "CONGRATULATIONS! YOU WIN WITH NEW RECORD!");
+				} else {
+					jop.showMessageDialog(getParent(), "CONGRATULATIONS! YOU WIN!");
+				}
+				
+				
+			}
 		} else {
 			lbl[firstPick].setText(Integer.toString(firstPick + 1));
 			lbl[secondPick].setText(Integer.toString(secondPick + 1));
 			misses++;
 			MemoryGame.getLblMissesVal().setText(misses + "");
+			
 		}
 		ignoreInput = false;
 	}
@@ -270,6 +303,10 @@ public class MemoryPanel extends JPanel implements Serializable {
 
 	public void setMisses(int misses) {
 		this.misses = misses;
+	}
+
+	public static int getRecordMisses() {
+		return recordMisses;
 	}
 
 }
