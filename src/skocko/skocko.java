@@ -6,7 +6,6 @@ import java.awt.SystemColor;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Random;
-import java.util.Scanner;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -24,93 +23,164 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.io.PrintWriter;
-import java.net.URISyntaxException;
 import java.awt.Toolkit;
 
-
+/**
+* Predstavlja celu igricu skocko
+* 
+* @author Aleksandar Randjelovic
+* @version 1.0
+*/
 public class skocko extends JFrame {
-
+	/**
+	 * Panel na kome se sve nalazi
+	 */
 	private JPanel contentPane;
+	/**
+	 * Dugme koje se pritiska za unosenje znaka skocka
+	 */
 	private JButton btnSkocko;
+	/**
+	 * Dugme koje se pritiska za unosenje znaka zvezde
+	 */
 	private JButton btnZvezda;
+	/**
+	 * Dugme koje se pritiska za unosenje znka pika
+	 */
 	private JButton btnPik;
+	/**
+	 * Dugme koje se pritiska za unosenje znaka srca
+	 */
 	private JButton btnSrce;
+	/**
+	 * Dugme koje se pritiska za unosenje znaka trefa
+	 */
 	private JButton btnTref;
+	/**
+	 * Dugme koje se pritiska za unosenje znaka karo
+	 */
 	private JButton btnKaro;
+	/**
+	 * Polja prvog reda
+	 */
 	private JLabel a1;
 	private JLabel a2;
 	private JLabel a3;
 	private JLabel a4;
+	/**
+	 * Polja drugog reda
+	 */
 	private JLabel b1;
 	private JLabel b2;
 	private JLabel b3;
 	private JLabel b4;
+	/**
+	 * Polja treceg reda
+	 */
 	private JLabel c1;
 	private JLabel c2;
 	private JLabel c3;
 	private JLabel c4;
+	/**
+	 * Polja cetvrtog reda
+	 */
 	private JLabel d1;
 	private JLabel d2;
 	private JLabel d3;
 	private JLabel d4;
+	/**
+	 * Polja petog reda
+	 */
 	private JLabel e1;
 	private JLabel e2;
 	private JLabel e3;
 	private JLabel e4;
+	/**
+	 * Polja sestog reda
+	 */
 	private JLabel f1;
 	private JLabel f2;
 	private JLabel f3;
 	private JLabel f4;
 	
+	/**
+	 * Borojac koliko je puta korisnik puta kliknuo da unese neki znak
+	 */
 	private int brojacKlikova = 1;
 	
+	/**
+	 * Polja prvog reda koja pokazuju koliko je znakova na pravom, a koliko na pogresnom mestu.
+	 */
 	private JLabel aa;
 	private JLabel ab;
 	private JLabel ac;
 	private JLabel ad;
+	/**
+	 * Polja drugog reda koja pokazuju koliko je znakova na pravom, a koliko na pogresnom mestu.
+	 */
 	private JLabel ba;
 	private JLabel bb;
 	private JLabel bc;
 	private JLabel bd;
+	/**
+	 * Polja treceg reda koja pokazuju koliko je znakova na pravom, a koliko na pogresnom mestu.
+	 */
 	private JLabel ca;
 	private JLabel cb;
 	private JLabel cc;
 	private JLabel cd;
+	/**
+	 * Polja cetvrtog reda koja pokazuju koliko je znakova na pravom, a koliko na pogresnom mestu.
+	 */
 	private JLabel da;
 	private JLabel db;
 	private JLabel dc;
 	private JLabel dd;
+	/**
+	 * Polja petog reda koja pokazuju koliko je znakova na pravom, a koliko na pogresnom mestu.
+	 */
 	private JLabel ea;
 	private JLabel eb;
 	private JLabel ec;
 	private JLabel ed;
+	/**
+	 * Polja sestog reda koja pokazuju koliko je znakova na pravom, a koliko na pogresnom mestu.
+	 */
 	private JLabel fa;
 	private JLabel fb;
 	private JLabel fc;
 	private JLabel fd;
+	/**
+	 * Vizuelni prikazivac vremena koje je ostalo do kraja
+	 */
 	private JProgressBar progressBar;
+	/**
+	 * Natpis vreme
+	 */
 	private JLabel lblVreme;
+	/**
+	 * Dugme za pokretanje igrice
+	 */
 	private JButton btnStart;
+	/**
+	 * Tekstualni prikazivac vremena koje je ostalo do kraja
+	 */
 	private JTextField textField;
+	/**
+	 * Polja u koja se unosi random kombinacija i sa kojima se vrsi poredjenje kada korisnik pogadja kombinaciju
+	 */
 	private JLabel r1;
 	private JLabel r2;
 	private JLabel r3;
 	private JLabel r4;
-	
+	/**
+	 * Pomocne vrednosti koje sluze za ogranicenje da korisnik ne moze da klikne u bilo kom trenutku na bilo koje polje
+	 * i tako krene da unosi znakove od tog mesta gde je kliknuo
+	 */
 	boolean a1enabled = false;
 	boolean a2enabled = false;
 	boolean a3enabled = false;
@@ -129,12 +199,17 @@ public class skocko extends JFrame {
 	boolean f1enabled = false;
 	boolean f2enabled = false;
 	boolean f3enabled = false;
+	/**
+	 * Natpis resenje
+	 */
 	private JLabel lblReenje;
-	
+	/**
+	 * Pomocna promenjliva koja signalizira da ne postoji fajl u koji se unosi rezultat
+	 */
 	boolean prviPut = false;
 	
 	/**
-	 * Launch the application.
+	 * Pokretanje aplikacije.
 	 */
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -150,7 +225,7 @@ public class skocko extends JFrame {
 	}
 
 	/**
-	 * Create the frame.
+	 * Kreira se prozor.
 	 */
 	public skocko() {
 		setIconImage(Toolkit.getDefaultToolkit().getImage(skocko.class.getResource("/ikonica/skockoicon.png")));
@@ -226,13 +301,17 @@ public class skocko extends JFrame {
 		contentPane.add(getR3());
 		contentPane.add(getR4());
 		contentPane.add(getLblReenje());
-		contentPane.add(getLblNajboljiRezultat());
-		contentPane.add(getLblRezultatsa());
+		contentPane.add(getLblNajbolji());
+		contentPane.add(getLblRezultatnatpis());
 		contentPane.add(getLblRezultat());
 		
 		setLocationRelativeTo(null);
 	}
-	
+	/**
+	 * Metoda vraca dugme skocko ina klik na ovo dugme poziva se metoda klik koja je definisana u daljem kodu i
+	 * registruje da je izvrsen jedan unos znaka
+	 * @return znak skocko kao Button
+	 */
 	private JButton getBtnSkocko() {
 		if (btnSkocko == null) {
 			btnSkocko = new JButton("");
@@ -248,6 +327,11 @@ public class skocko extends JFrame {
 		}
 		return btnSkocko;
 	}
+	/**
+	 * Metoda vraca dugme zvezda ina klik na ovo dugme poziva se metoda klik koja je definisana u daljem kodu i
+	 * registruje da je izvrsen jedan unos znaka
+	 * @return znak zvezda kao Button
+	 */
 	private JButton getBtnZvezda() {
 		if (btnZvezda == null) {
 			btnZvezda = new JButton("");
@@ -263,6 +347,11 @@ public class skocko extends JFrame {
 		}
 		return btnZvezda;
 	}
+	/**
+	 * Metoda vraca dugme pik ina klik na ovo dugme poziva se metoda klik koja je definisana u daljem kodu i
+	 * registruje da je izvrsen jedan unos znaka
+	 * @return pik skocko kao Button
+	 */
 	private JButton getBtnPik() {
 		if (btnPik == null) {
 			btnPik = new JButton("");
@@ -278,6 +367,11 @@ public class skocko extends JFrame {
 		}
 		return btnPik;
 	}
+	/**
+	 * Metoda vraca dugme srce ina klik na ovo dugme poziva se metoda klik koja je definisana u daljem kodu i
+	 * registruje da je izvrsen jedan unos znaka
+	 * @return znak srce kao Button
+	 */
 	private JButton getBtnSrce() {
 		if (btnSrce == null) {
 			btnSrce = new JButton("");
@@ -293,6 +387,11 @@ public class skocko extends JFrame {
 		}
 		return btnSrce;
 	}
+	/**
+	 * Metoda vraca dugme tref ina klik na ovo dugme poziva se metoda klik koja je definisana u daljem kodu i
+	 * registruje da je izvrsen jedan unos znaka
+	 * @return znak tref kao Button
+	 */
 	private JButton getBtnTref() {
 		if (btnTref == null) {
 			btnTref = new JButton("");
@@ -308,6 +407,11 @@ public class skocko extends JFrame {
 		}
 		return btnTref;
 	}
+	/**
+	 * Metoda vraca dugme karo ina klik na ovo dugme poziva se metoda klik koja je definisana u daljem kodu i
+	 * registruje da je izvrsen jedan unos znaka
+	 * @return znak karo kao Button
+	 */
 	private JButton getBtnKaro() {
 		if (btnKaro == null) {
 			btnKaro = new JButton("");
@@ -323,6 +427,11 @@ public class skocko extends JFrame {
 		}
 		return btnKaro;
 	}
+	/**
+	 * Metoda vraca polje i na klik na ovo polje u slucaju da postoji neki znak unet u ovo polje brise taj znak
+	 * tj. stavlja novu sliku preko
+	 * @return polje kao JLabel
+	 */
 	private JLabel getA1() {
 		if (a1 == null) {
 			a1 = new JLabel("");
@@ -341,6 +450,11 @@ public class skocko extends JFrame {
 		}
 		return a1;
 	}
+	/**
+	 * Metoda vraca polje i na klik na ovo polje u slucaju da postoji neki znak unet u ovo polje brise taj znak
+	 * tj. stavlja novu sliku preko
+	 * @return polje kao JLabel
+	 */
 	private JLabel getA2() {
 		if (a2 == null) {
 			a2 = new JLabel("");
@@ -359,7 +473,11 @@ public class skocko extends JFrame {
 		}
 		return a2;
 	}
-	
+	/**
+	 * Metoda vraca polje i na klik na ovo polje u slucaju da postoji neki znak unet u ovo polje brise taj znak
+	 * tj. stavlja novu sliku preko
+	 * @return polje kao JLabel
+	 */
 	private JLabel getA3() {
 		if (a3 == null) {
 			a3 = new JLabel("");
@@ -378,6 +496,10 @@ public class skocko extends JFrame {
 		}
 		return a3;
 	}
+	/**
+	 * Metoda vraca dato polje 
+	 * @return polje kao JLabel
+	 */
 	private JLabel getA4() {
 		if (a4 == null) {
 			a4 = new JLabel("");
@@ -387,7 +509,11 @@ public class skocko extends JFrame {
 		}
 		return a4;
 	}
-	
+	/**
+	 * Metoda vraca polje i na klik na ovo polje u slucaju da postoji neki znak unet u ovo polje brise taj znak
+	 * tj. stavlja novu sliku preko
+	 * @return polje kao JLabel
+	 */
 	private JLabel getB1() {
 		if (b1 == null) {
 			b1 = new JLabel("");
@@ -406,6 +532,11 @@ public class skocko extends JFrame {
 		}
 		return b1;
 	}
+	/**
+	 * Metoda vraca polje i na klik na ovo polje u slucaju da postoji neki znak unet u ovo polje brise taj znak
+	 * tj. stavlja novu sliku preko
+	 * @return polje kao JLabel
+	 */
 	private JLabel getB2() {
 		if (b2 == null) {
 			b2 = new JLabel("");
@@ -424,7 +555,11 @@ public class skocko extends JFrame {
 		}
 		return b2;
 	}
-	
+	/**
+	 * Metoda vraca polje i na klik na ovo polje u slucaju da postoji neki znak unet u ovo polje brise taj znak
+	 * tj. stavlja novu sliku preko
+	 * @return polje kao JLabel
+	 */
 	private JLabel getB3() {
 		if (b3 == null) {
 			b3 = new JLabel("");
@@ -443,6 +578,10 @@ public class skocko extends JFrame {
 		}
 		return b3;
 	}
+	/**
+	 * Metoda vraca dato polje 
+	 * @return polje kao JLabel
+	 */
 	private JLabel getB4() {
 		if (b4 == null) {
 			b4 = new JLabel("");
@@ -452,6 +591,11 @@ public class skocko extends JFrame {
 		}
 		return b4;
 	}
+	/**
+	 * Metoda vraca polje i na klik na ovo polje u slucaju da postoji neki znak unet u ovo polje brise taj znak
+	 * tj. stavlja novu sliku preko
+	 * @return polje kao JLabel
+	 */
 	private JLabel getC1() {
 		if (c1 == null) {
 			c1 = new JLabel("");
@@ -470,6 +614,11 @@ public class skocko extends JFrame {
 		}
 		return c1;
 	}
+	/**
+	 * Metoda vraca polje i na klik na ovo polje u slucaju da postoji neki znak unet u ovo polje brise taj znak
+	 * tj. stavlja novu sliku preko
+	 * @return polje kao JLabel
+	 */
 	private JLabel getC2() {
 		if (c2 == null) {
 			c2 = new JLabel("");
@@ -488,7 +637,11 @@ public class skocko extends JFrame {
 		}
 		return c2;
 	}
-	
+	/**
+	 * Metoda vraca polje i na klik na ovo polje u slucaju da postoji neki znak unet u ovo polje brise taj znak
+	 * tj. stavlja novu sliku preko
+	 * @return polje kao JLabel
+	 */
 	private JLabel getC3() {
 		if (c3 == null) {
 			c3 = new JLabel("");
@@ -507,6 +660,10 @@ public class skocko extends JFrame {
 		}
 		return c3;
 	}
+	/**
+	 * Metoda vraca dato polje 
+	 * @return polje kao JLabel
+	 */
 	private JLabel getC4() {
 		if (c4 == null) {
 			c4 = new JLabel("");
@@ -516,6 +673,11 @@ public class skocko extends JFrame {
 		}
 		return c4;
 	}
+	/**
+	 * Metoda vraca polje i na klik na ovo polje u slucaju da postoji neki znak unet u ovo polje brise taj znak
+	 * tj. stavlja novu sliku preko
+	 * @return polje kao JLabel
+	 */
 	private JLabel getD1() {
 		if (d1 == null) {
 			d1 = new JLabel("");
@@ -534,6 +696,11 @@ public class skocko extends JFrame {
 		}
 		return d1;
 	}
+	/**
+	 * Metoda vraca polje i na klik na ovo polje u slucaju da postoji neki znak unet u ovo polje brise taj znak
+	 * tj. stavlja novu sliku preko
+	 * @return polje kao JLabel
+	 */
 	private JLabel getD2() {
 		if (d2 == null) {
 			d2 = new JLabel("");
@@ -552,7 +719,11 @@ public class skocko extends JFrame {
 		}
 		return d2;
 	}
-	
+	/**
+	 * Metoda vraca polje i na klik na ovo polje u slucaju da postoji neki znak unet u ovo polje brise taj znak
+	 * tj. stavlja novu sliku preko
+	 * @return polje kao JLabel
+	 */
 	private JLabel getD3() {
 		if (d3 == null) {
 			d3 = new JLabel("");
@@ -571,6 +742,10 @@ public class skocko extends JFrame {
 		}
 		return d3;
 	}
+	/**
+	 * Metoda vraca dato polje 
+	 * @return polje kao JLabel
+	 */
 	private JLabel getD4() {
 		if (d4 == null) {
 			d4 = new JLabel("");
@@ -580,6 +755,11 @@ public class skocko extends JFrame {
 		}
 		return d4;
 	}
+	/**
+	 * Metoda vraca polje i na klik na ovo polje u slucaju da postoji neki znak unet u ovo polje brise taj znak
+	 * tj. stavlja novu sliku preko
+	 * @return polje kao JLabel
+	 */
 	private JLabel getE1() {
 		if (e1 == null) {
 			e1 = new JLabel("");
@@ -598,6 +778,11 @@ public class skocko extends JFrame {
 		}
 		return e1;
 	}
+	/**
+	 * Metoda vraca polje i na klik na ovo polje u slucaju da postoji neki znak unet u ovo polje brise taj znak
+	 * tj. stavlja novu sliku preko
+	 * @return polje kao JLabel
+	 */
 	private JLabel getE2() {
 		if (e2 == null) {
 			e2 = new JLabel("");
@@ -616,7 +801,11 @@ public class skocko extends JFrame {
 		}
 		return e2;
 	}
-	
+	/**
+	 * Metoda vraca polje i na klik na ovo polje u slucaju da postoji neki znak unet u ovo polje brise taj znak
+	 * tj. stavlja novu sliku preko
+	 * @return polje kao JLabel
+	 */
 	private JLabel getE3() {
 		if (e3 == null) {
 			e3 = new JLabel("");
@@ -635,6 +824,10 @@ public class skocko extends JFrame {
 		}
 		return e3;
 	}
+	/**
+	 * Metoda vraca dato polje 
+	 * @return polje kao JLabel
+	 */
 	private JLabel getE4() {
 		if (e4 == null) {
 			e4 = new JLabel("");
@@ -644,6 +837,11 @@ public class skocko extends JFrame {
 		}
 		return e4;
 	}
+	/**
+	 * Metoda vraca polje i na klik na ovo polje u slucaju da postoji neki znak unet u ovo polje brise taj znak
+	 * tj. stavlja novu sliku preko
+	 * @return polje kao JLabel
+	 */
 	private JLabel getF1() {
 		if (f1 == null) {
 			f1 = new JLabel("");
@@ -662,6 +860,11 @@ public class skocko extends JFrame {
 		}
 		return f1;
 	}
+	/**
+	 * Metoda vraca polje i na klik na ovo polje u slucaju da postoji neki znak unet u ovo polje brise taj znak
+	 * tj. stavlja novu sliku preko
+	 * @return polje kao JLabel
+	 */
 	private JLabel getF2() {
 		if (f2 == null) {
 			f2 = new JLabel("");
@@ -680,7 +883,11 @@ public class skocko extends JFrame {
 		}
 		return f2;
 	}
-	
+	/**
+	 * Metoda vraca polje i na klik na ovo polje u slucaju da postoji neki znak unet u ovo polje brise taj znak
+	 * tj. stavlja novu sliku preko
+	 * @return polje kao JLabel
+	 */
 	private JLabel getF3() {
 		if (f3 == null) {
 			f3 = new JLabel("");
@@ -699,6 +906,10 @@ public class skocko extends JFrame {
 		}
 		return f3;
 	}
+	/**
+	 * Metoda vraca dato polje 
+	 * @return polje kao JLabel
+	 */
 	private JLabel getF4() {
 		if (f4 == null) {
 			f4 = new JLabel("");
@@ -708,6 +919,10 @@ public class skocko extends JFrame {
 		}
 		return f4;
 	}
+	/**
+	 * Metoda vraca dato polje koje se boju u slucaju pogodjenog ili znaka koji nije na mestu za prvi red
+	 * @return polje kao JLabel
+	 */
 	private JLabel getAa() {
 		if (aa == null) {
 			aa = new JLabel("");
@@ -744,6 +959,10 @@ public class skocko extends JFrame {
 		}
 		return ad;
 	}
+	/**
+	 * Metoda vraca dato polje koje se boju u slucaju pogodjenog ili znaka koji nije na mestu za drugi red
+	 * @return polje kao JLabel
+	 */
 	private JLabel getBa() {
 		if (ba == null) {
 			ba = new JLabel("");
@@ -780,6 +999,10 @@ public class skocko extends JFrame {
 		}
 		return bd;
 	}
+	/**
+	 * Metoda vraca dato polje koje se boju u slucaju pogodjenog ili znaka koji nije na mestu za treci red
+	 * @return polje kao JLabel
+	 */
 	private JLabel getCa() {
 		if (ca == null) {
 			ca = new JLabel("");
@@ -816,6 +1039,10 @@ public class skocko extends JFrame {
 		}
 		return cd;
 	}
+	/**
+	 * Metoda vraca dato polje koje se boju u slucaju pogodjenog ili znaka koji nije na mestu za cetvrti red
+	 * @return polje kao JLabel
+	 */
 	private JLabel getDa() {
 		if (da == null) {
 			da = new JLabel("");
@@ -852,6 +1079,10 @@ public class skocko extends JFrame {
 		}
 		return dd;
 	}
+	/**
+	 * Metoda vraca dato polje koje se boju u slucaju pogodjenog ili znaka koji nije na mestu za peti red
+	 * @return polje kao JLabel
+	 */
 	private JLabel getEa() {
 		if (ea == null) {
 			ea = new JLabel("");
@@ -888,6 +1119,10 @@ public class skocko extends JFrame {
 		}
 		return ed;
 	}
+	/**
+	 * Metoda vraca dato polje koje se boju u slucaju pogodjenog ili znaka koji nije na mestu za sesti red
+	 * @return polje kao JLabel
+	 */
 	private JLabel getFa() {
 		if (fa == null) {
 			fa = new JLabel("");
@@ -924,6 +1159,10 @@ public class skocko extends JFrame {
 		}
 		return fd;
 	}
+	/**
+	 * Metoda vraca progressBar koji sluzi za prikazivanje vremena
+	 * @return progressBar
+	 */
 	private JProgressBar getProgressBar() {
 		if (progressBar == null) {
 			progressBar = new JProgressBar();
@@ -934,6 +1173,10 @@ public class skocko extends JFrame {
 		}
 		return progressBar;
 	}
+	/**
+	 * Metoda vraca label koj je natpis vreme
+	 * @return lblVreme kao Jlabel
+	 */
 	private JLabel getLblVreme() {
 		if (lblVreme == null) {
 			lblVreme = new JLabel("VREME");
@@ -942,6 +1185,10 @@ public class skocko extends JFrame {
 		}
 		return lblVreme;
 	}
+	/**
+	 * Metoda vraca polje u koje se brojcano upisuje vreme
+	 * @return textField kao JtextField
+	 */
 	private JTextField getTextField() {
 		if (textField == null) {
 			textField = new JTextField();
@@ -954,6 +1201,10 @@ public class skocko extends JFrame {
 		}
 		return textField;
 	}
+	/**
+	 * Metoda vraca polje u koje se random upisuje neki znak 
+	 * @return polje za rezultat kao JLabel
+	 */
 	private JLabel getR1() {
 		if (r1 == null) {
 			r1 = new JLabel("");
@@ -961,6 +1212,10 @@ public class skocko extends JFrame {
 		}
 		return r1;
 	}
+	/**
+	 * Metoda vraca polje u koje se random upisuje neki znak 
+	 * @return polje za rezultat kao JLabel
+	 */
 	private JLabel getR2() {
 		if (r2 == null) {
 			r2 = new JLabel("");
@@ -968,6 +1223,10 @@ public class skocko extends JFrame {
 		}
 		return r2;
 	}
+	/**
+	 * Metoda vraca polje u koje se random upisuje neki znak 
+	 * @return polje za rezultat kao JLabel
+	 */
 	private JLabel getR3() {
 		if (r3 == null) {
 			r3 = new JLabel("");
@@ -975,6 +1234,10 @@ public class skocko extends JFrame {
 		}
 		return r3;
 	}
+	/**
+	 * Metoda vraca polje u koje se random upisuje neki znak 
+	 * @return polje za rezultat kao JLabel
+	 */
 	private JLabel getR4() {
 		if (r4 == null) {
 			r4 = new JLabel("");
@@ -982,22 +1245,35 @@ public class skocko extends JFrame {
 		}
 		return r4;
 	}
-	private JLabel getLblNajboljiRezultat() {
-		if (lblNajboljiRezultat == null) {
-			lblNajboljiRezultat = new JLabel("NAJBOLJI ");
-			lblNajboljiRezultat.setFont(new Font("Eras Bold ITC", Font.PLAIN, 17));
-			lblNajboljiRezultat.setBounds(356, 396, 100, 14);
+	/**
+	 * Metoda vraca label koj je natpis najbolji
+	 * @return lblNajbolji kao Jlabel
+	 */
+	private JLabel getLblNajbolji() {
+		if (lblNajbolji == null) {
+			lblNajbolji = new JLabel("NAJBOLJI ");
+			lblNajbolji.setFont(new Font("Eras Bold ITC", Font.PLAIN, 17));
+			lblNajbolji.setBounds(356, 396, 100, 14);
 		}
-		return lblNajboljiRezultat;
+		return lblNajbolji;
 	}
-	private JLabel getLblRezultatsa() {
-		if (lblRezultatsa == null) {
-			lblRezultatsa = new JLabel("REZULTAT:");
-			lblRezultatsa.setFont(new Font("Eras Bold ITC", Font.PLAIN, 17));
-			lblRezultatsa.setBounds(353, 409, 103, 29);
+	/**
+	 * Metoda vraca label koj je natpis rezultat
+	 * @return lblRezultatNatpis kao Jlabel
+	 */
+	private JLabel getLblRezultatnatpis() {
+		if (lblRezultatnatpis == null) {
+			lblRezultatnatpis = new JLabel("REZULTAT:");
+			lblRezultatnatpis.setFont(new Font("Eras Bold ITC", Font.PLAIN, 17));
+			lblRezultatnatpis.setBounds(353, 409, 103, 29);
 		}
-		return lblRezultatsa;
+		return lblRezultatnatpis;
 	}
+	/**
+	 * Metoda vraca label koj je najbolji postavljen rezultat i ona svaki put ucitava iz fajla najbolji rezultat osim prvog puta
+	 * kada jos ni jednom nije pogodjena kombinacija
+	 * @return lblRezultat kao Jlabel
+	 */
 	private JLabel getLblRezultat() {
 		if (lblRezultat == null) {
 			lblRezultat = new JLabel("");
@@ -1017,6 +1293,13 @@ public class skocko extends JFrame {
 		}
 		return lblRezultat;
 	}
+	/**
+	 * Metoda vraca btnStart i na klik na ovo dugme poziva metodu random i na osnovu nje izbacuje neku kombinaciju brojeva,
+	 * postavlja da su dugmici za unos znakova vidljivi, stavlja da su poslednja 4 polja za  resenja nevidljiva za korisnika,
+	 * postavlja da su za klik dostupna samo prva 3 polja prvog reda, brise sve do tada unete znakove iz prethodne partije,
+	 * postavlja pocetni brojac klikova i poziva metodu Timer
+	 * @return btnStart kao JButton
+	 */
 	private JButton getBtnStart() {
 		if (btnStart == null) {
 			btnStart = new JButton("START");
@@ -1083,6 +1366,12 @@ public class skocko extends JFrame {
 		}
 		return btnStart;
 	}
+	/**
+	 * @param JButton
+	 * Ova metoda u zavisnosti od broja unetih znakova i kliknutog znaka koji je dat kao ulazni parametar postavlja
+	 * taj znak na polje koje je sledece u nizu, sagledavajuci slucaj za 4. polje svakog reda kada poziva metodu krajReda
+	 * koja predstavlja drugi slucaj od prva tri polja
+	 */
 	public void klik(JButton button) {
 		switch(brojacKlikova) {
 			case 1:a1.setIcon(button.getIcon()); break;
@@ -1111,13 +1400,22 @@ public class skocko extends JFrame {
 			case 24:krajReda(button, f4, fa, fb, fc, fd, f1, f2, f3, f4); break;
 		}
 	}
-	
+	/**
+	 * Metoda vraca broj na osnovu koga se odredjuje random kombinacija koju korisnik treba da pogodi
+	 * Brojevi su u rasponu od 1 do 6 jer postoji 6 mogucih znakova
+	 * @return randomBroj kao int
+	 */
 	public static int random() {
 	    Random random = new Random();
 	    int randomNum = random.nextInt(6) + 1;
 	    return randomNum;
 	}
-	
+	/**
+	 * Metoda vraca niz od broja pogodjenih i broja onih znakova koji nisu na svom mestu, ona poredi svako polje 
+	 * iz jednog reda sa poljima u kojima je upisana zadata kombinacija i na osnovu toga vraca ova dva podatka
+	 * @param 4 polja kao JLabel-i
+	 * @return niz od dva broja kao int[]
+	 */
 	public int[] brojPogodjenihIbrojOnihKojiNisuNaSvomMestu(JLabel a, JLabel b, JLabel c, JLabel d) {
 		int[] niz = new int[2];
 		int brojPogodjenih = 0;
@@ -1200,6 +1498,18 @@ public class skocko extends JFrame {
 		return niz;
 	}
 	int rezultat = 0;
+	/**
+	 * Ova metoda se svodi na specijalan slucaj kada korisnik unese 4. znak u nekom redu, ona tada sagledava 14 mogucih 
+	 * kombinacija broja pogodjenih i broja onih koji nisu na svom mestu i upisuje to u odgovarajuca polja. U slucaju 
+	 * da je broj pogodjenih 4, to znaci da je korisnik pogodio kombinaciju i iskace prozor koji ga obavestava o vremenu
+	 * koje mu je bilo potrebno da pogodi. Istovremeno upisuje ovaj rezultat u fajl i ispisuje ga u polje za prikaz
+	 * najboljeg rezultata. Onemogucava dalje unosenje znakova. Registruje da je kombinacija pogodjena. Poseban slucaj je
+	 * kada kombinacija nije pogodjena,a predvidjeno vreme je isteklo, onda iskace prozor koji obavestava o isteku vremena
+	 * i onemogucava dalje unosenje znakova.
+	 * 
+	 * @param dugme koje je kliknuto, poslednje polje u datom redu, 4 polja koja sluze za prokaz pogodjenih  znakova i 
+	 * onih koji nisu na svom mestu, 4 polja datog reda u koje se unose znakovi
+	 */
 	public void krajReda(JButton button, JLabel poslednji, JLabel a, JLabel b, JLabel c, JLabel d,
 			JLabel x, JLabel y, JLabel z, JLabel w) {
 		poslednji.setIcon(button.getIcon());
@@ -1291,8 +1601,6 @@ public class skocko extends JFrame {
 					}
 					in.close();
 				}
-//				
-				
 			}catch(Exception e){
 				throw new RuntimeException(e);
 			}
@@ -1410,7 +1718,9 @@ public class skocko extends JFrame {
 		}
 		
 	}
-	
+	/**
+	 * Metoda na poziv dugmeta start prazni sva polja tj postavlja slike sive boje
+	 */	
 	public void isprazniSvaPolja() {
 		a1.setIcon(new ImageIcon(this.getClass().getResource("/prazno.png")));
 		a2.setIcon(new ImageIcon(this.getClass().getResource("/prazno.png")));
@@ -1461,6 +1771,10 @@ public class skocko extends JFrame {
 		fc.setBackground(SystemColor.inactiveCaptionBorder);
 		fd.setBackground(SystemColor.inactiveCaptionBorder);
 	}
+	/**
+	 * metoda vraca natpis resenje
+	 * @return resenje kao lblReenje
+	 */
 	private JLabel getLblReenje() {
 		if (lblReenje == null) {
 			lblReenje = new JLabel("REŠENJE");
@@ -1470,15 +1784,35 @@ public class skocko extends JFrame {
 		}
 		return lblReenje;
 	}
-	
-	private boolean prviProlaz = false;
-	private int sekunda = 1000;//milisekunde
+	/**
+	 * predstavlja broj milisekundi na koje se tajmer menja
+	 */
+	private int sekunda = 1000;
+	/**
+	 * predstavlja pocetak za odbrojavanje od 100 sec
+	 */
 	private int brojac = 100;
+	/**
+	 * predstavlja instancu klase timer
+	 */
 	private Timer timer;
-	private JLabel lblNajboljiRezultat;
-	private JLabel lblRezultatsa;
+	/**
+	 * predstavlja natpis najbolji
+	 */
+	private JLabel lblNajbolji;
+	/**
+	 * predstavlja natpis rezultat
+	 */
+	private JLabel lblRezultatnatpis;
+	/**
+	 * predstavlja polje za ispis najboljeg rezultata
+	 */
 	private JLabel lblRezultat;
 	
+	/**
+	 * metoda tajmer koja se poziva na dugme start, na pocetku svake igre tajmer se setuje na 100 i krece da odbrojava do nule
+	 * i na osnovu njega se menjaju vrednosti progressBara
+	 */
 	public void Timer() {
 		timer = new Timer(sekunda, null);
         timer.setRepeats(false);
@@ -1509,7 +1843,9 @@ public class skocko extends JFrame {
 		};
 		timer.addActionListener(actionListener);
 	}
-	
+	/**
+	 * metoda za upisivanje najboljeg rezultata u fajl
+	 */
 	public void upisiUFajl() {
 		try {
 			ObjectOutputStream out = new ObjectOutputStream(new BufferedOutputStream(new FileOutputStream("rezultat.out")));
