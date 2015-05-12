@@ -3,6 +3,7 @@ import java.awt.Graphics;
 import java.awt.Point;
 import java.util.Random;
 
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
@@ -179,7 +180,7 @@ public class Brojevi extends JPanel {
 				}
 				else{
 					JOptionPane.showMessageDialog(contentPane,
-							"GRESKA", "Brojevi",
+							"Greška! Pokušajte ponovo!", "Brojevi",
 							JOptionPane.ERROR_MESSAGE);
 					setVisible(false);
 				}
@@ -187,8 +188,8 @@ public class Brojevi extends JPanel {
 		if(brojacKliknutih==brojevi.length){
 			predjen=true;
 			JOptionPane.showMessageDialog(contentPane,
-				"SVAKA CAST", "Brojevi",
-				JOptionPane.INFORMATION_MESSAGE);
+				"Bravo! Prešli ste nivo!", "Brojevi",
+				JOptionPane.INFORMATION_MESSAGE, new ImageIcon(this.getClass().getResource("/brojevi/nikolamilikic.png")));
 		}
 	}
 

@@ -8,12 +8,15 @@ import javax.swing.JOptionPane;
 import javax.swing.SwingConstants;
 import javax.swing.border.LineBorder;
 
+import brojevi.BrojeviGUI;
+
 import java.awt.Font;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.Dimension;
+import java.awt.Toolkit;
 
 public class MemoryGame extends JFrame {
 	/**
@@ -55,6 +58,7 @@ public class MemoryGame extends JFrame {
 	/** Konstruktor za kreiranje prozora sa igricom */
 	public MemoryGame() {
 		getContentPane().setBackground(new Color(255, 255, 102));
+		setIconImage(Toolkit.getDefaultToolkit().getImage(MemoryGame.class.getResource("/memorygame/memorija.jpg")));
 		setResizable(false);
 		initComponents();
 

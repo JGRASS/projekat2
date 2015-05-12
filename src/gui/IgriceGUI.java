@@ -4,12 +4,18 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JButton;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.Toolkit;
+
 import javax.swing.JLabel;
 import javax.swing.ImageIcon;
+
+import skocko.Skocko;
+
 import java.awt.SystemColor;
 
 public class IgriceGUI extends JFrame {
@@ -33,6 +39,7 @@ public class IgriceGUI extends JFrame {
 		contentPane.setBackground(new Color(175, 238, 238));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
+		setIconImage(Toolkit.getDefaultToolkit().getImage(Skocko.class.getResource("/gui/igre.jpg")));
 		contentPane.setLayout(null);
 		contentPane.add(getBtnBrojevi());
 		contentPane.add(getBtnMemorija());

@@ -8,6 +8,7 @@ import java.io.FileOutputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
@@ -15,8 +16,17 @@ import brojevi.BrojeviGUI;
 import memorygame.MemoryGame;
 import skocko.Skocko;
 
+/**
+* Predstavlja kontrolni GUI iz koga se poyivaju svi prozori, ovo je preyentacioni nivo
+*/
 public class GUIKontoler {
+	/**
+	* instanca pocetnog prozora IgriceGUI
+	*/
 	private static IgriceGUI igrice;
+	/**
+	* pokretanje pocetnog proyora
+	*/
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -29,25 +39,37 @@ public class GUIKontoler {
 			}
 		});
 	}
+	/**
+	* Metoda koja poyiva otvaranje prozora za igricu Skocko
+	*/
 	public static void prikaziSkocko() {
 		Skocko prozor = new Skocko();
 		prozor.setLocationRelativeTo(null);
 		prozor.setVisible(true);
 	}
+	/**
+	* Metoda koja poziva otvaranje prozora za igricu Brojevi
+	*/
 	public static void prikaziBrojeviGUI() {
 		BrojeviGUI prozor = new BrojeviGUI();
 		prozor.setLocationRelativeTo(null);
 		prozor.setVisible(true);
 	}
+	/**
+	* Metoda koja poziva otvaranje prozora za igricu Memorija
+	*/
 	public static void prikaziMemoriju() {
 		MemoryGame prozor = new MemoryGame();
 		prozor.setLocationRelativeTo(null);
 		prozor.setVisible(true);
 	}
+	/**
+	* Metoda koja otvara prozor u kome se vide podaci o autorima
+	*/
 	public static void prikaziAutore(JPanel contentPane){
 		JOptionPane.showMessageDialog(contentPane,
-				"Dusan Radovanovic 123/13\nAleksandar Randjelovic 89/13\n Filip Nedovic Bijelo Polje Drevni grad Samograd", "Brojevi",
-				JOptionPane.INFORMATION_MESSAGE);
+				"Studenti Fakulteta Organizacionih Nauka  \n\n Dušan Radovanović \n\n Aleksandar Randjelović \n\n Filip Nedović ", "Autori",
+				JOptionPane.INFORMATION_MESSAGE, new ImageIcon(igrice.getClass().getResource("/gui/autori.jpg")));
 	}
 	/**
 	 * metoda koja cuva najbolji rezultat

@@ -2,6 +2,7 @@ package brojevi;
 import gui.GUIKontoler;
 
 import java.awt.BorderLayout;
+import java.awt.Toolkit;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -15,12 +16,14 @@ import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 
+
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.awt.Color;
 
 
 public class BrojeviGUI extends JFrame {
@@ -81,6 +84,7 @@ public class BrojeviGUI extends JFrame {
 	 * Create the frame.
 	 */
 	public BrojeviGUI() {
+		setBackground(new Color(255, 255, 102));
 		addWindowListener(new WindowAdapter() {		
 			@Override
 			public void windowClosing(WindowEvent arg0) {
@@ -98,6 +102,7 @@ public class BrojeviGUI extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setVisible(true);
 		contentPane.add(getPanel(), BorderLayout.EAST);
+		setIconImage(Toolkit.getDefaultToolkit().getImage(BrojeviGUI.class.getResource("/brojevi/kuglica.png")));
 		getTxtHighScore();
 		getTxtTrenutniNivo();
 		timer=new Timer();

@@ -1555,8 +1555,9 @@ public class Skocko extends JFrame {
 			lblReenje.setVisible(true);
 			
 			timer.stop();
-			JOptionPane.showMessageDialog(null, "ÄŒestitamo!!! Pogodili ste traÅ¾enu kombinaciju." + "\n" + 
-			"VaÅ¡e vreme je: " +(100 - progressBar.getValue())+ " sec", "SkoÄ�ko" , JOptionPane.INFORMATION_MESSAGE);
+			JOptionPane.showMessageDialog(null, "Čestitamo!!! Pogodili ste traženu kombinaciju." + "\n" + 
+			"Vaše vreme je: " +(100 - progressBar.getValue())+ " sec", "Skočko" , JOptionPane.INFORMATION_MESSAGE,
+			new ImageIcon(this.getClass().getResource("/skocko/devedzic1.jpg")));
 			pogodjeno = true;	 
 			int rez=GUIKontoler.ucitajRez("rezultat.out");
 			if ((100 - progressBar.getValue()) < rez || rez==0) {
@@ -1668,8 +1669,8 @@ public class Skocko extends JFrame {
 			f3enabled = false;
 			if(!pogodjeno) {
 				timer.stop();
-				JOptionPane.showMessageDialog(null, "ViÅ¡e sreÄ‡e drugi put! :( ", "SkoÄ�ko" ,
-						JOptionPane.INFORMATION_MESSAGE);
+				JOptionPane.showMessageDialog(null, "Više sreće drugi put! :( ", "Skočko" ,
+						JOptionPane.INFORMATION_MESSAGE, new ImageIcon(this.getClass().getResource("/skocko/devedzic2.jpg")));
 				r1.setVisible(true);
 				r2.setVisible(true);
 				r3.setVisible(true);
@@ -1792,8 +1793,8 @@ public class Skocko extends JFrame {
             	if(brojac <= 10) progressBar.setForeground(Color.red);
             	else progressBar.setForeground(Color.green);
             	if(brojac == 0) {
-            		JOptionPane.showMessageDialog(null, "Vreme je isteklo. ", "SkoÄ�ko" ,
-        					JOptionPane.INFORMATION_MESSAGE);
+            		JOptionPane.showMessageDialog(null, "Vreme je isteklo. ", "Skočko" ,
+        					JOptionPane.INFORMATION_MESSAGE, new ImageIcon(this.getClass().getResource("/brojevi/devedzic2.jpg")));
         			timer.stop();
         			r1.setVisible(true);
                 	r2.setVisible(true);
