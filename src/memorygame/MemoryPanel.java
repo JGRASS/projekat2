@@ -1,5 +1,7 @@
 package memorygame;
 
+import gui.GUIKontoler;
+
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
@@ -83,10 +85,7 @@ public class MemoryPanel extends JPanel implements Serializable {
 	 * Najmanji broj promasaja 
 	 */
 	private static int recordMisses = 0;
-	/**
-	 * Pokazuje da li je odigrana igra odigrana makar jednom
-	 */
-	private boolean firstGame = false;
+	
 	/**
 	 * Konstruktor kojim se kreira panel.
 	 */
@@ -138,7 +137,7 @@ public class MemoryPanel extends JPanel implements Serializable {
 			add(lbl[i]);
 		}
 
-		displayDelay = new Timer(700, new ActionListener() {
+		displayDelay = new Timer(500, new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				timerActionPerformed();
 			}
@@ -215,15 +214,17 @@ public class MemoryPanel extends JPanel implements Serializable {
 			hits++;
 			MemoryGame.getLblHitsVal().setText(hits + "");
 			if(hits == 8) {
-				firstGame = true;
-				if(firstGame) {
+				
+				if(recordMisses == 0) {
 					recordMisses = getMisses();
-					JOptionPane.showMessageDialog(getParent(), "CONGRATULATIONS! YOU WIN!");
+					JOptionPane.showMessageDialog(getParent(), "Cestitamo! Pobijedili ste!");
+					GUIKontoler.sacuvajRez("memorygame.rekord.out", recordMisses);
 				} else if(getMisses() < recordMisses) {
 					recordMisses = getMisses();
-					JOptionPane.showMessageDialog(getParent(), "CONGRATULATIONS! YOU WIN WITH NEW RECORD!");
+					GUIKontoler.sacuvajRez("memorygame.rekord.out", recordMisses);
+					JOptionPane.showMessageDialog(getParent(), "Cestitamo! Pobijedili ste sa novim rekordom!");
 				} else {
-					JOptionPane.showMessageDialog(getParent(), "CONGRATULATIONS! YOU WIN!");
+					JOptionPane.showMessageDialog(getParent(), "Cestitamo! Pobijedili ste!");
 				}
 				
 				

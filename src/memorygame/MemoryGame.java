@@ -1,5 +1,7 @@
 package memorygame;
 
+import gui.GUIKontoler;
+
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -117,7 +119,8 @@ public class MemoryGame extends JFrame {
 		btnRecord.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		btnRecord.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				new JOptionPane().showMessageDialog(getParent(), "Najmanji broj promasaja: " +MemoryPanel.getRecordMisses());
+				int record = GUIKontoler.ucitajRez("memorygame.rekord.out");
+				new JOptionPane().showMessageDialog(getParent(), "Najmanji broj promasaja: " +record);
 			}
 		});
 		btnRecord.setFont(new Font("Tahoma", Font.BOLD, 16));
