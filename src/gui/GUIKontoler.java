@@ -69,7 +69,7 @@ public class GUIKontoler {
 	public static void prikaziAutore(JPanel contentPane){
 		JOptionPane.showMessageDialog(contentPane,
 				"Studenti Fakulteta Organizacionih Nauka  \n\n Dušan Radovanović \n\n Aleksandar Randjelović \n\n Filip Nedović ", "Autori",
-				JOptionPane.INFORMATION_MESSAGE, new ImageIcon(igrice.getClass().getResource("/gui/autori.jpg")));
+				JOptionPane.INFORMATION_MESSAGE, new ImageIcon(igrice.getClass().getResource("/gui/slike/autori.jpg")));
 	}
 	/**
 	 * metoda koja cuva najbolji rezultat

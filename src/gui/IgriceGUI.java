@@ -39,7 +39,7 @@ public class IgriceGUI extends JFrame {
 		contentPane.setBackground(new Color(175, 238, 238));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
-		setIconImage(Toolkit.getDefaultToolkit().getImage(Skocko.class.getResource("/gui/igre.jpg")));
+		setIconImage(Toolkit.getDefaultToolkit().getImage(Skocko.class.getResource("/gui/slike/igre.jpg")));
 		contentPane.setLayout(null);
 		contentPane.add(getBtnBrojevi());
 		contentPane.add(getBtnMemorija());
@@ -107,7 +107,7 @@ public class IgriceGUI extends JFrame {
 	private JLabel getLabel_1() {
 		if (lblNewLabel == null) {
 			lblNewLabel = new JLabel("");
-			lblNewLabel.setIcon(new ImageIcon(this.getClass().getResource("/gui/dasads.jpg")));
+			lblNewLabel.setIcon(new ImageIcon(this.getClass().getResource("/gui/slike/dasads.jpg")));
 			lblNewLabel.setBounds(0, 0, 450, 542);
 		}
 		return lblNewLabel;

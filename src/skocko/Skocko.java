@@ -208,7 +208,7 @@ public class Skocko extends JFrame {
 	 * Kreira se prozor.
 	 */
 	public Skocko() {
-		setIconImage(Toolkit.getDefaultToolkit().getImage(Skocko.class.getResource("/skocko/skockoicon.png")));
+		setIconImage(Toolkit.getDefaultToolkit().getImage(Skocko.class.getResource("/skocko/slike/skockoicon.png")));
 		setTitle("Sko\u010Dko");
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -301,7 +301,7 @@ public class Skocko extends JFrame {
 					brojacKlikova++;
 				}
 			});
-			btnSkocko.setIcon(new ImageIcon(this.getClass().getResource("/skocko/skocko.png")));
+			btnSkocko.setIcon(new ImageIcon(this.getClass().getResource("/skocko/slike/skocko.png")));
 			btnSkocko.setBounds(10, 10, 50, 50);
 		}
 		return btnSkocko;
@@ -321,7 +321,7 @@ public class Skocko extends JFrame {
 					brojacKlikova++;
 				}
 			});
-			btnZvezda.setIcon(new ImageIcon(this.getClass().getResource("/skocko/zvezda.png")));
+			btnZvezda.setIcon(new ImageIcon(this.getClass().getResource("/skocko/slike/zvezda.png")));
 			btnZvezda.setBounds(10, 70, 50, 50);
 		}
 		return btnZvezda;
@@ -341,7 +341,7 @@ public class Skocko extends JFrame {
 					brojacKlikova++;
 				}
 			});
-			btnPik.setIcon(new ImageIcon(this.getClass().getResource("/skocko/tref.png")));
+			btnPik.setIcon(new ImageIcon(this.getClass().getResource("/skocko/slike/tref.png")));
 			btnPik.setBounds(10, 130, 50, 50);
 		}
 		return btnPik;
@@ -361,7 +361,7 @@ public class Skocko extends JFrame {
 					brojacKlikova++;
 				}
 			});
-			btnSrce.setIcon(new ImageIcon(this.getClass().getResource("/skocko/srce.png")));
+			btnSrce.setIcon(new ImageIcon(this.getClass().getResource("/skocko/slike/srce.png")));
 			btnSrce.setBounds(10, 190, 50, 50);
 		}
 		return btnSrce;
@@ -381,7 +381,7 @@ public class Skocko extends JFrame {
 					brojacKlikova++;
 				}
 			});
-			btnTref.setIcon(new ImageIcon(this.getClass().getResource("/skocko/pik.png")));
+			btnTref.setIcon(new ImageIcon(this.getClass().getResource("/skocko/slike/pik.png")));
 			btnTref.setBounds(10, 250, 50, 50);
 		}
 		return btnTref;
@@ -401,7 +401,7 @@ public class Skocko extends JFrame {
 					brojacKlikova++;
 				}
 			});
-			btnKaro.setIcon(new ImageIcon(this.getClass().getResource("/skocko/karo.png")));
+			btnKaro.setIcon(new ImageIcon(this.getClass().getResource("/skocko/slike/karo.png")));
 			btnKaro.setBounds(10, 310, 50, 50);
 		}
 		return btnKaro;
@@ -418,7 +418,7 @@ public class Skocko extends JFrame {
 				@Override
 				public void mouseClicked(MouseEvent arg0) {
 					if(a1.getIcon()!=null && a1enabled) {
-						a1.setIcon(new ImageIcon(this.getClass().getResource("/skocko/prazno.png")));
+						a1.setIcon(new ImageIcon(this.getClass().getResource("/skocko/slike/prazno.png")));
 						brojacKlikova = 1;
 					}
 				}
@@ -441,7 +441,7 @@ public class Skocko extends JFrame {
 				@Override
 				public void mouseClicked(MouseEvent arg0) {
 					if(a2.getIcon()!=null && a2enabled) {
-						a2.setIcon(new ImageIcon(this.getClass().getResource("/skocko/prazno.png")));
+						a2.setIcon(new ImageIcon(this.getClass().getResource("/skocko/slike/prazno.png")));
 						brojacKlikova = 2;
 					}
 				}
@@ -465,7 +465,7 @@ public class Skocko extends JFrame {
 				@Override
 				public void mouseClicked(MouseEvent arg0) {
 					if(a3.getIcon()!=null && a3enabled) {
-						a3.setIcon(new ImageIcon(this.getClass().getResource("/skocko/prazno.png")));
+						a3.setIcon(new ImageIcon(this.getClass().getResource("/skocko/slike/prazno.png")));
 						brojacKlikova = 3;
 					}
 				}
@@ -500,7 +500,7 @@ public class Skocko extends JFrame {
 				@Override
 				public void mouseClicked(MouseEvent arg0) {
 					if(b1.getIcon()!=null && b1enabled) {
-						b1.setIcon(new ImageIcon(this.getClass().getResource("/skocko/prazno.png")));
+						b1.setIcon(new ImageIcon(this.getClass().getResource("/skocko/slike/prazno.png")));
 						brojacKlikova = 5;
 					}
 				}
@@ -523,7 +523,7 @@ public class Skocko extends JFrame {
 				@Override
 				public void mouseClicked(MouseEvent arg0) {
 					if(b2.getIcon()!=null && b2enabled) {
-						b2.setIcon(new ImageIcon(this.getClass().getResource("/skocko/prazno.png")));
+						b2.setIcon(new ImageIcon(this.getClass().getResource("/skocko/slike/prazno.png")));
 						brojacKlikova = 6;
 					}
 				}
@@ -546,7 +546,7 @@ public class Skocko extends JFrame {
 				@Override
 				public void mouseClicked(MouseEvent arg0) {
 					if(b3.getIcon()!=null && b3enabled) {
-						b3.setIcon(new ImageIcon(this.getClass().getResource("/skocko/prazno.png")));
+						b3.setIcon(new ImageIcon(this.getClass().getResource("/skocko/slike/prazno.png")));
 						brojacKlikova = 7;
 					}
 				}
@@ -582,7 +582,7 @@ public class Skocko extends JFrame {
 				@Override
 				public void mouseClicked(MouseEvent arg0) {
 					if(c1.getIcon()!=null && c1enabled) {
-						c1.setIcon(new ImageIcon(this.getClass().getResource("/skocko/prazno.png")));
+						c1.setIcon(new ImageIcon(this.getClass().getResource("/skocko/slike/prazno.png")));
 						brojacKlikova = 9;
 					}
 				}
@@ -605,7 +605,7 @@ public class Skocko extends JFrame {
 				@Override
 				public void mouseClicked(MouseEvent arg0) {
 					if(c2.getIcon()!=null && c2enabled) {
-						c2.setIcon(new ImageIcon(this.getClass().getResource("/skocko/prazno.png")));
+						c2.setIcon(new ImageIcon(this.getClass().getResource("/skocko/slike/prazno.png")));
 						brojacKlikova = 10;
 					}
 				}
@@ -628,7 +628,7 @@ public class Skocko extends JFrame {
 				@Override
 				public void mouseClicked(MouseEvent arg0) {
 					if(c3.getIcon()!=null && c3enabled) {	
-						c3.setIcon(new ImageIcon(this.getClass().getResource("/skocko/prazno.png")));
+						c3.setIcon(new ImageIcon(this.getClass().getResource("/skocko/slike/prazno.png")));
 						brojacKlikova = 11;
 					}
 				}	
@@ -664,7 +664,7 @@ public class Skocko extends JFrame {
 				@Override
 				public void mouseClicked(MouseEvent arg0) {
 					if(d1.getIcon()!=null && d1enabled) {
-						d1.setIcon(new ImageIcon(this.getClass().getResource("/skocko/prazno.png")));
+						d1.setIcon(new ImageIcon(this.getClass().getResource("/skocko/slike/prazno.png")));
 						brojacKlikova = 13;
 					}
 				}
@@ -687,7 +687,7 @@ public class Skocko extends JFrame {
 				@Override
 				public void mouseClicked(MouseEvent arg0) {
 					if(d2.getIcon()!=null && d2enabled) {	
-						d2.setIcon(new ImageIcon(this.getClass().getResource("/skocko/prazno.png")));
+						d2.setIcon(new ImageIcon(this.getClass().getResource("/skocko/slike/prazno.png")));
 						brojacKlikova = 14;
 					}
 				}
@@ -710,7 +710,7 @@ public class Skocko extends JFrame {
 				@Override
 				public void mouseClicked(MouseEvent arg0) {
 					if(d3.getIcon()!=null && d3enabled) {
-						d3.setIcon(new ImageIcon(this.getClass().getResource("/skocko/prazno.png")));
+						d3.setIcon(new ImageIcon(this.getClass().getResource("/skocko/slike/prazno.png")));
 						brojacKlikova = 15;
 					}
 				}
@@ -746,7 +746,7 @@ public class Skocko extends JFrame {
 				@Override
 				public void mouseClicked(MouseEvent arg0) {
 					if(e1.getIcon()!=null && e1enabled) {
-						e1.setIcon(new ImageIcon(this.getClass().getResource("/skocko/prazno.png")));
+						e1.setIcon(new ImageIcon(this.getClass().getResource("/skocko/slike/prazno.png")));
 						brojacKlikova = 17;
 					}
 				}
@@ -769,7 +769,7 @@ public class Skocko extends JFrame {
 				@Override
 				public void mouseClicked(MouseEvent arg0) {
 					if(e2.getIcon()!=null && e2enabled) {
-						e2.setIcon(new ImageIcon(this.getClass().getResource("/skocko/prazno.png")));
+						e2.setIcon(new ImageIcon(this.getClass().getResource("/skocko/slike/prazno.png")));
 						brojacKlikova = 18;
 					}
 				}
@@ -792,7 +792,7 @@ public class Skocko extends JFrame {
 				@Override
 				public void mouseClicked(MouseEvent arg0) {
 					if(e3.getIcon()!=null && e3enabled) {
-						e3.setIcon(new ImageIcon(this.getClass().getResource("/skocko/prazno.png")));
+						e3.setIcon(new ImageIcon(this.getClass().getResource("/skocko/slike/prazno.png")));
 						brojacKlikova = 19;
 					}
 				}
@@ -828,7 +828,7 @@ public class Skocko extends JFrame {
 				@Override
 				public void mouseClicked(MouseEvent arg0) {
 					if(f1.getIcon()!=null && f1enabled) {
-						f1.setIcon(new ImageIcon(this.getClass().getResource("/skocko/prazno.png")));
+						f1.setIcon(new ImageIcon(this.getClass().getResource("/skocko/slike/prazno.png")));
 						brojacKlikova = 21;
 					}
 				}
@@ -851,7 +851,7 @@ public class Skocko extends JFrame {
 				@Override
 				public void mouseClicked(MouseEvent arg0) {
 					if(f2.getIcon()!=null && f2enabled) {
-						f2.setIcon(new ImageIcon(this.getClass().getResource("/skocko/prazno.png")));
+						f2.setIcon(new ImageIcon(this.getClass().getResource("/skocko/slike/prazno.png")));
 						brojacKlikova = 22;
 					}
 				}
@@ -874,7 +874,7 @@ public class Skocko extends JFrame {
 				@Override
 				public void mouseClicked(MouseEvent arg0) {
 					if(f3.getIcon()!=null && f3enabled) {
-						f3.setIcon(new ImageIcon(this.getClass().getResource("/skocko/prazno.png")));
+						f3.setIcon(new ImageIcon(this.getClass().getResource("/skocko/slike/prazno.png")));
 						brojacKlikova = 23;
 					}
 				}
@@ -1257,7 +1257,7 @@ public class Skocko extends JFrame {
 		if (lblRezultat == null) {
 			lblRezultat = new JLabel("");
 			lblRezultat.setHorizontalAlignment(SwingConstants.CENTER);		
-			int rez=GUIKontoler.ucitajRez("rezultat.out");
+			int rez=GUIKontoler.ucitajRez("highscoreSkocko.out");
 			lblRezultat.setText(String.valueOf(rez) + " sec");
 			lblRezultat.setFont(new Font("Eras Bold ITC", Font.PLAIN, 17));
 			lblRezultat.setBounds(340, 444, 116, 14);
@@ -1557,11 +1557,11 @@ public class Skocko extends JFrame {
 			timer.stop();
 			JOptionPane.showMessageDialog(null, "Čestitamo!!! Pogodili ste traženu kombinaciju." + "\n" + 
 			"Vaše vreme je: " +(100 - progressBar.getValue())+ " sec", "Skočko" , JOptionPane.INFORMATION_MESSAGE,
-			new ImageIcon(this.getClass().getResource("/skocko/devedzic1.jpg")));
+			new ImageIcon(this.getClass().getResource("/skocko/slike/devedzic1.jpg")));
 			pogodjeno = true;	 
-			int rez=GUIKontoler.ucitajRez("rezultat.out");
+			int rez=GUIKontoler.ucitajRez("highscoreSkocko.out");
 			if ((100 - progressBar.getValue()) < rez || rez==0) {
-				GUIKontoler.sacuvajRez("rezultat.out", 100 - progressBar.getValue());
+				GUIKontoler.sacuvajRez("highscoreSkocko.out", 100 - progressBar.getValue());
 				lblRezultat.setText(String.valueOf(100 - progressBar.getValue()) + " sec");
 			}
 				
@@ -1670,7 +1670,7 @@ public class Skocko extends JFrame {
 			if(!pogodjeno) {
 				timer.stop();
 				JOptionPane.showMessageDialog(null, "Više sreće drugi put! :( ", "Skočko" ,
-						JOptionPane.INFORMATION_MESSAGE, new ImageIcon(this.getClass().getResource("/skocko/devedzic2.jpg")));
+						JOptionPane.INFORMATION_MESSAGE, new ImageIcon(this.getClass().getResource("/skocko/slike/devedzic2.jpg")));
 				r1.setVisible(true);
 				r2.setVisible(true);
 				r3.setVisible(true);
@@ -1684,30 +1684,30 @@ public class Skocko extends JFrame {
 	 * Metoda na poziv dugmeta start prazni sva polja tj postavlja slike sive boje
 	 */	
 	public void isprazniSvaPolja() {
-		a1.setIcon(new ImageIcon(this.getClass().getResource("/skocko/prazno.png")));
-		a2.setIcon(new ImageIcon(this.getClass().getResource("/skocko/prazno.png")));
-		a3.setIcon(new ImageIcon(this.getClass().getResource("/skocko/prazno.png")));
-		a4.setIcon(new ImageIcon(this.getClass().getResource("/skocko/prazno.png")));
-		b1.setIcon(new ImageIcon(this.getClass().getResource("/skocko/prazno.png")));
-		b2.setIcon(new ImageIcon(this.getClass().getResource("/skocko/prazno.png")));
-		b3.setIcon(new ImageIcon(this.getClass().getResource("/skocko/prazno.png")));
-		b4.setIcon(new ImageIcon(this.getClass().getResource("/skocko/prazno.png")));
-		c1.setIcon(new ImageIcon(this.getClass().getResource("/skocko/prazno.png")));
-		c2.setIcon(new ImageIcon(this.getClass().getResource("/skocko/prazno.png")));
-		c3.setIcon(new ImageIcon(this.getClass().getResource("/skocko/prazno.png")));
-		c4.setIcon(new ImageIcon(this.getClass().getResource("/skocko/prazno.png")));
-		d1.setIcon(new ImageIcon(this.getClass().getResource("/skocko/prazno.png")));
-		d2.setIcon(new ImageIcon(this.getClass().getResource("/skocko/prazno.png")));
-		d3.setIcon(new ImageIcon(this.getClass().getResource("/skocko/prazno.png")));
-		d4.setIcon(new ImageIcon(this.getClass().getResource("/skocko/prazno.png")));
-		e1.setIcon(new ImageIcon(this.getClass().getResource("/skocko/prazno.png")));
-		e2.setIcon(new ImageIcon(this.getClass().getResource("/skocko/prazno.png")));
-		e3.setIcon(new ImageIcon(this.getClass().getResource("/skocko/prazno.png")));
-		e4.setIcon(new ImageIcon(this.getClass().getResource("/skocko/prazno.png")));
-		f1.setIcon(new ImageIcon(this.getClass().getResource("/skocko/prazno.png")));
-		f2.setIcon(new ImageIcon(this.getClass().getResource("/skocko/prazno.png")));
-		f3.setIcon(new ImageIcon(this.getClass().getResource("/skocko/prazno.png")));
-		f4.setIcon(new ImageIcon(this.getClass().getResource("/skocko/prazno.png")));
+		a1.setIcon(new ImageIcon(this.getClass().getResource("/skocko/slike/prazno.png")));
+		a2.setIcon(new ImageIcon(this.getClass().getResource("/skocko/slike/prazno.png")));
+		a3.setIcon(new ImageIcon(this.getClass().getResource("/skocko/slike/prazno.png")));
+		a4.setIcon(new ImageIcon(this.getClass().getResource("/skocko/slike/prazno.png")));
+		b1.setIcon(new ImageIcon(this.getClass().getResource("/skocko/slike/prazno.png")));
+		b2.setIcon(new ImageIcon(this.getClass().getResource("/skocko/slike/prazno.png")));
+		b3.setIcon(new ImageIcon(this.getClass().getResource("/skocko/slike/prazno.png")));
+		b4.setIcon(new ImageIcon(this.getClass().getResource("/skocko/slike/prazno.png")));
+		c1.setIcon(new ImageIcon(this.getClass().getResource("/skocko/slike/prazno.png")));
+		c2.setIcon(new ImageIcon(this.getClass().getResource("/skocko/slike/prazno.png")));
+		c3.setIcon(new ImageIcon(this.getClass().getResource("/skocko/slike/prazno.png")));
+		c4.setIcon(new ImageIcon(this.getClass().getResource("/skocko/slike/prazno.png")));
+		d1.setIcon(new ImageIcon(this.getClass().getResource("/skocko/slike/prazno.png")));
+		d2.setIcon(new ImageIcon(this.getClass().getResource("/skocko/slike/prazno.png")));
+		d3.setIcon(new ImageIcon(this.getClass().getResource("/skocko/slike/prazno.png")));
+		d4.setIcon(new ImageIcon(this.getClass().getResource("/skocko/slike/prazno.png")));
+		e1.setIcon(new ImageIcon(this.getClass().getResource("/skocko/slike/prazno.png")));
+		e2.setIcon(new ImageIcon(this.getClass().getResource("/skocko/slike/prazno.png")));
+		e3.setIcon(new ImageIcon(this.getClass().getResource("/skocko/slike/prazno.png")));
+		e4.setIcon(new ImageIcon(this.getClass().getResource("/skocko/slike/prazno.png")));
+		f1.setIcon(new ImageIcon(this.getClass().getResource("/skocko/slike/prazno.png")));
+		f2.setIcon(new ImageIcon(this.getClass().getResource("/skocko/slike/prazno.png")));
+		f3.setIcon(new ImageIcon(this.getClass().getResource("/skocko/slike/prazno.png")));
+		f4.setIcon(new ImageIcon(this.getClass().getResource("/skocko/slike/prazno.png")));
 		aa.setBackground(SystemColor.inactiveCaptionBorder);
 		ab.setBackground(SystemColor.inactiveCaptionBorder);
 		ac.setBackground(SystemColor.inactiveCaptionBorder);
@@ -1806,8 +1806,4 @@ public class Skocko extends JFrame {
 		};
 		timer.addActionListener(actionListener);
 	}
-	/**
-	 * metoda za upisivanje najboljeg rezultata u fajl
-	 */
-	
 }

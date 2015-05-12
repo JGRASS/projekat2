@@ -60,11 +60,11 @@ public class MemoryGame extends JFrame {
 	/** Konstruktor za kreiranje prozora sa igricom */
 	public MemoryGame() {
 		getContentPane().setBackground(new Color(255, 255, 102));
-		setIconImage(Toolkit.getDefaultToolkit().getImage(MemoryGame.class.getResource("/memorygame/memorija.jpg")));
+		setIconImage(Toolkit.getDefaultToolkit().getImage(MemoryGame.class.getResource("/memorygame/slike/memorija.jpg")));
 		setResizable(false);
 		initComponents();
 
-		bkgndIcon = new ImageIcon(this.getClass().getResource("/memorygame/bojan.jpg"));
+		bkgndIcon = new ImageIcon(this.getClass().getResource("/memorygame/slike/bojan.jpg"));
 		mp.displayImage(bkgndIcon);
 	}
 	/**
@@ -119,7 +119,7 @@ public class MemoryGame extends JFrame {
 		btnRecord.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		btnRecord.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				int record = GUIKontoler.ucitajRez("memorygame.rekord.out");
+				int record = GUIKontoler.ucitajRez("highscoreMemoryGame.out");
 				new JOptionPane().showMessageDialog(getParent(), "Najmanji broj promasaja: " +record);
 			}
 		});

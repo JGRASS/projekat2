@@ -24,6 +24,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.awt.Color;
+import javax.swing.ImageIcon;
+import javax.swing.SwingConstants;
+import java.awt.Font;
 
 
 public class BrojeviGUI extends JFrame {
@@ -34,7 +37,7 @@ public class BrojeviGUI extends JFrame {
 	/**
 	 * panel koji sadrzi dugmice i informacije o rezultatu
 	 */
-	private JPanel panel;
+	private JPanel panelEast;
 	/**
 	 * labela HighScore
 	 */
@@ -55,10 +58,6 @@ public class BrojeviGUI extends JFrame {
 	 * dugme koje resetuje igru
 	 */
 	private JButton btnIgraj;
-	/**
-	 * dugme koje izlazi iz igrice
-	 */
-	private JButton btnIzadji;
 	/**
 	 * Brojevi koji se postavljaju i pogadjaju
 	 */
@@ -94,19 +93,16 @@ public class BrojeviGUI extends JFrame {
 		});
 		setResizable(false);
 		setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
-		setBounds(100, 100, 800, 500);
+		setBounds(0, 0, 817, 437);
 		contentPane = new JPanel();
-		contentPane.setPreferredSize(new Dimension(800, 400));
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new BorderLayout(0, 0));
 		setContentPane(contentPane);
-		contentPane.setVisible(true);
-		contentPane.add(getPanel(), BorderLayout.EAST);
-		setIconImage(Toolkit.getDefaultToolkit().getImage(BrojeviGUI.class.getResource("/brojevi/kuglica.png")));
-		getTxtHighScore();
-		getTxtTrenutniNivo();
-		timer=new Timer();
+//		contentPane.setVisible(true);
+		contentPane.add(getPanelEast(), BorderLayout.EAST);
 		highScore=GUIKontoler.ucitajRez("highScoreBrojevi.out");
+		txtHighScore.setText(Integer.toString(highScore));
+		setIconImage(Toolkit.getDefaultToolkit().getImage(BrojeviGUI.class.getResource("/brojevi/slike/kuglica.png")));	
+		timer=new Timer();		
 		TimerTask task=new TimerTask() {
 			@Override
 			public void run() {
@@ -119,37 +115,36 @@ public class BrojeviGUI extends JFrame {
 			}
 		};
 		timer.schedule(task, 0,1000);
-		
-		
-		
+		brojevi=new Brojevi(0);
+		contentPane.add(brojevi);
 	}
 	/**
 	 * metoda koja postavlja nove brojeve na ekran
 	 */
 	private void postavi(){
-		if(brojevi!=null) brojevi.setVisible(false);
+		brojevi.setVisible(false);
 		brojevi=new Brojevi(5+nivo);
 		brojevi.setVisible(true);
 		if(nivo>highScore) highScore=nivo;
 		txtTrenutniNivo.setText(Integer.toString(nivo));
 		txtHighScore.setText(Integer.toString(highScore));		
-		nivo++;		
+		nivo++;
 		brojevi.setEnabled(false);
+		brojevi.paintComponents(getGraphics());
 		brojevi.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				if(brojevi.isEnabled())
 				{
-				brojevi.proveri(e.getX(), e.getY(), brojevi);		
-				if (brojevi.isPredjen()){
-					postavi();
-				}
+					brojevi.proveri(e.getX(), e.getY(), brojevi);		
+					if (brojevi.isPredjen()){
+						postavi();
+					}
 				}
 			}
 		});
-		brojevi.setPreferredSize(new Dimension(700, 400));
+		brojevi.setPreferredSize(new Dimension(650,400));
 		brojevi.setLayout(null);
-		brojevi.paintComponents(getGraphics());
 		if(nivo>=10) vreme=15;
 		if(nivo<10)
 			vreme=8;
@@ -159,32 +154,36 @@ public class BrojeviGUI extends JFrame {
 			vreme=4;
 		contentPane.add(brojevi, BorderLayout.CENTER);
 	}
-	private JPanel getPanel() {
-		if (panel == null) {
-			panel = new JPanel();
-			panel.setPreferredSize(new Dimension(150, 10));
-			panel.setLayout(null);
-			panel.add(getLblHighScore());
-			panel.add(getTxtHighScore());
-			panel.add(getLblTrenutniNivo());
-			panel.add(getTxtTrenutniNivo());
-			panel.add(getBtnIgraj());
-			panel.add(getBtnIzadji());
+	private JPanel getPanelEast() {
+		if (panelEast == null) {
+			panelEast = new JPanel();
+			panelEast.setPreferredSize(new Dimension(150, 10));
+			panelEast.setLayout(null);
+			panelEast.add(getLblHighScore());
+			panelEast.add(getTxtHighScore());
+			panelEast.add(getLblTrenutniNivo());
+			panelEast.add(getTxtTrenutniNivo());
+			panelEast.add(getBtnIgraj());
 		}
-		return panel;
+		return panelEast;
 	}
 	private JLabel getLblHighScore() {
 		if (lblHighScore == null) {
 			lblHighScore = new JLabel("HighScore");
-			lblHighScore.setBounds(21, 5, 105, 14);
+			lblHighScore.setFont(new Font("Tahoma", Font.BOLD, 13));
+			lblHighScore.setHorizontalAlignment(SwingConstants.CENTER);
+			lblHighScore.setBounds(45, 11, 80, 24);
 		}
 		return lblHighScore;
 	}
 	private JTextField getTxtHighScore() {
 		if (txtHighScore == null) {
 			txtHighScore = new JTextField();
+			txtHighScore.setDisabledTextColor(Color.BLACK);
+			txtHighScore.setHorizontalAlignment(SwingConstants.CENTER);
+			txtHighScore.setFont(new Font("Papyrus", Font.BOLD, 38));
 			txtHighScore.setEnabled(false);
-			txtHighScore.setBounds(21, 24, 105, 20);
+			txtHighScore.setBounds(45, 36, 80, 80);
 			txtHighScore.setColumns(10);
 		}
 		return txtHighScore;
@@ -192,43 +191,38 @@ public class BrojeviGUI extends JFrame {
 	private JLabel getLblTrenutniNivo() {
 		if (lblTrenutniNivo == null) {
 			lblTrenutniNivo = new JLabel("Trenutni nivo");
-			lblTrenutniNivo.setBounds(18, 49, 96, 14);
+			lblTrenutniNivo.setFont(new Font("Tahoma", Font.BOLD, 11));
+			lblTrenutniNivo.setHorizontalAlignment(SwingConstants.CENTER);
+			lblTrenutniNivo.setBounds(45, 126, 80, 31);
 		}
 		return lblTrenutniNivo;
 	}
 	private JTextField getTxtTrenutniNivo() {
 		if (txtTrenutniNivo == null) {
 			txtTrenutniNivo = new JTextField();
+			txtTrenutniNivo.setDisabledTextColor(Color.BLACK);
+			txtTrenutniNivo.setHorizontalAlignment(SwingConstants.CENTER);
+			txtTrenutniNivo.setFont(new Font("Papyrus", Font.BOLD, 38));
 			txtTrenutniNivo.setEnabled(false);
-			txtTrenutniNivo.setBounds(21, 68, 105, 20);
+			txtTrenutniNivo.setBounds(45, 168, 80, 80);
 			txtTrenutniNivo.setColumns(10);
 		}
 		return txtTrenutniNivo;
 	}
 	private JButton getBtnIgraj() {
 		if (btnIgraj == null) {
-			btnIgraj = new JButton("Igraj");
+			btnIgraj = new JButton("");
+			btnIgraj.setBorder(null);
+			btnIgraj.setIcon(new ImageIcon(BrojeviGUI.class.getResource("/brojevi/slike/play.png")));
 			btnIgraj.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent arg0) {
 					nivo=0;
 					postavi();
 				}
 			});
-			btnIgraj.setBounds(22, 93, 104, 23);
+			btnIgraj.setBounds(45, 286, 80, 80);
 		}
 		return btnIgraj;
-	}
-	private JButton getBtnIzadji() {
-		if (btnIzadji == null) {
-			btnIzadji = new JButton("Izadji");
-			btnIzadji.addActionListener(new ActionListener() {
-				public void actionPerformed(ActionEvent arg0) {
-					izadji();
-				}
-			});
-			btnIzadji.setBounds(21, 121, 105, 23);
-		}
-		return btnIzadji;
 	}
 	
 	/**
