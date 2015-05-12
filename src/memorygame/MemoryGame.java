@@ -120,7 +120,7 @@ public class MemoryGame extends JFrame {
 		btnRecord.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				int record = GUIKontoler.ucitajRez("memorygame.rekord.out");
-				new JOptionPane().showMessageDialog(getParent(), "Najmanji broj promasaja: " +record);
+				new JOptionPane().showMessageDialog(getParent(), "Najmanji broj promašaja: " +record);
 			}
 		});
 		btnRecord.setFont(new Font("Tahoma", Font.BOLD, 16));

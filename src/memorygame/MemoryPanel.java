@@ -217,14 +217,14 @@ public class MemoryPanel extends JPanel implements Serializable {
 				
 				if(recordMisses == 0) {
 					recordMisses = getMisses();
-					JOptionPane.showMessageDialog(getParent(), "Cestitamo! Pobijedili ste!");
+					JOptionPane.showMessageDialog(getParent(), "Čestitamo! Pobijedili ste!");
 					GUIKontoler.sacuvajRez("memorygame.rekord.out", recordMisses);
 				} else if(getMisses() < recordMisses) {
 					recordMisses = getMisses();
 					GUIKontoler.sacuvajRez("memorygame.rekord.out", recordMisses);
-					JOptionPane.showMessageDialog(getParent(), "Cestitamo! Pobijedili ste sa novim rekordom!");
+					JOptionPane.showMessageDialog(getParent(), "Čestitamo! Pobijedili ste sa novim rekordom!");
 				} else {
-					JOptionPane.showMessageDialog(getParent(), "Cestitamo! Pobijedili ste!");
+					JOptionPane.showMessageDialog(getParent(), "Čestitamo! Pobijedili ste!");
 				}
 				
 				
