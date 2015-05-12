@@ -1,6 +1,7 @@
-package gui;
+package brojevi;
+import gui.GUIKontoler;
+
 import java.awt.BorderLayout;
-import java.awt.EventQueue;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -14,20 +15,12 @@ import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 
-import brojevi.Brojevi;
-
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-import java.io.BufferedInputStream;
-import java.io.BufferedOutputStream;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
 
 
 public class BrojeviGUI extends JFrame {

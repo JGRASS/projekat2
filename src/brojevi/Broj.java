@@ -3,10 +3,6 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Point;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.font.FontRenderContext;
-import java.awt.image.BufferedImage;
 
 /**
 * Predstavlja jedan kruzic sa brojem

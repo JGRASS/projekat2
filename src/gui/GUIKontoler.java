@@ -8,10 +8,10 @@ import java.io.FileOutputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
-import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
+import brojevi.BrojeviGUI;
 import memorygame.MemoryGame;
 import skocko.Skocko;
 
@@ -44,6 +44,11 @@ public class GUIKontoler {
 		prozor.setLocationRelativeTo(null);
 		prozor.setVisible(true);
 	}
+	public static void prikaziAutore(JPanel contentPane){
+		JOptionPane.showMessageDialog(contentPane,
+				"Dusan Radovanovic 123/13\nAleksandar Randjelovic 89/13\n Filip Nedovic Bijelo Polje Drevni grad Samograd", "Brojevi",
+				JOptionPane.INFORMATION_MESSAGE);
+	}
 	/**
 	 * metoda koja cuva najbolji rezultat
 	 * @param putanja adresa fajla koji se ucitava
@@ -71,20 +76,14 @@ public class GUIKontoler {
 			
 			ObjectInputStream in = new ObjectInputStream(
 					new BufferedInputStream(new FileInputStream(putanja)));
-			int highScore;
-			if(in.available()!=0)
-				highScore=in.readInt();
-			else highScore=0;
+			int highScore;		
+			highScore=in.readInt();
 			
 			in.close();
 			return highScore;
 		}catch(Exception e){
-			throw new RuntimeException(e);
+			return 0;
 		}
 	}
-	public static void prikaziAutore(JPanel contentPane){
-		JOptionPane.showMessageDialog(contentPane,
-				"Dusan Radovanovic 123/13\nAleksandar Randjelovic 89/13\n Filip Nedovic Bijelo Polje Drevni grad Samograd", "Brojevi",
-				JOptionPane.INFORMATION_MESSAGE);
-	}
+	
 }

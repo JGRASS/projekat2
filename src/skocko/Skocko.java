@@ -1,6 +1,7 @@
 package skocko;
+import gui.GUIKontoler;
+
 import java.awt.Color;
-import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.SystemColor;
 import java.awt.event.ActionEvent;
@@ -21,12 +22,6 @@ import javax.swing.border.EmptyBorder;
 
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.io.BufferedInputStream;
-import java.io.BufferedOutputStream;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
 import java.awt.Toolkit;
 
 /**
@@ -203,11 +198,11 @@ public class Skocko extends JFrame {
 	 * Natpis resenje
 	 */
 	private JLabel lblReenje;
-	/**
-	 * Pomocna promenjliva koja signalizira da ne postoji fajl u koji se unosi rezultat
-	 */
-	boolean prviPut = false;
-	
+//	/**
+//	 * Pomocna promenjliva koja signalizira da ne postoji fajl u koji se unosi rezultat
+//	 */
+//	boolean prviPut = false;
+//	
 
 	/**
 	 * Kreira se prozor.
@@ -251,8 +246,7 @@ public class Skocko extends JFrame {
 		contentPane.add(getF1());
 		contentPane.add(getF2());
 		contentPane.add(getF3());
-		contentPane.add(getF4());
-		
+		contentPane.add(getF4());	
 		contentPane.add(getAa());
 		contentPane.add(getAb());
 		contentPane.add(getAc());
@@ -1262,17 +1256,9 @@ public class Skocko extends JFrame {
 	private JLabel getLblRezultat() {
 		if (lblRezultat == null) {
 			lblRezultat = new JLabel("");
-			lblRezultat.setHorizontalAlignment(SwingConstants.CENTER);
-			if(prviPut) {
-				try{
-					ObjectInputStream in = new ObjectInputStream(new BufferedInputStream(new FileInputStream("rezultat.out")));
-					int rez = in.readInt();
-					lblRezultat.setText(String.valueOf(rez) + " sec");
-					in.close();
-				}catch(Exception e){
-					e.printStackTrace();
-				}
-			}
+			lblRezultat.setHorizontalAlignment(SwingConstants.CENTER);		
+			int rez=GUIKontoler.ucitajRez("rezultat.out");
+			lblRezultat.setText(String.valueOf(rez) + " sec");
 			lblRezultat.setFont(new Font("Eras Bold ITC", Font.PLAIN, 17));
 			lblRezultat.setBounds(340, 444, 116, 14);
 		}
@@ -1571,24 +1557,14 @@ public class Skocko extends JFrame {
 			timer.stop();
 			JOptionPane.showMessageDialog(null, "Čestitamo!!! Pogodili ste traženu kombinaciju." + "\n" + 
 			"Vaše vreme je: " +(100 - progressBar.getValue())+ " sec", "Skočko" , JOptionPane.INFORMATION_MESSAGE);
-			pogodjeno = true;
-			try{
-				if(!prviPut) {
-					upisiUFajl();
-					lblRezultat.setText(String.valueOf(100 - progressBar.getValue()) + " sec");
-					prviPut = true;
-				} else {
-					ObjectInputStream in = new ObjectInputStream(new BufferedInputStream(new FileInputStream("rezultat.out")));
-					int rez = in.readInt();
-					if ((100 - progressBar.getValue()) < rez) {
-						upisiUFajl();
-						lblRezultat.setText(String.valueOf(100 - progressBar.getValue()) + " sec");
-					}
-					in.close();
-				}
-			}catch(Exception e){
-				throw new RuntimeException(e);
+			pogodjeno = true;	 
+			int rez=GUIKontoler.ucitajRez("rezultat.out");
+			if ((100 - progressBar.getValue()) < rez || rez==0) {
+				GUIKontoler.sacuvajRez("rezultat.out", 100 - progressBar.getValue());
+				lblRezultat.setText(String.valueOf(100 - progressBar.getValue()) + " sec");
 			}
+				
+			
 		}
 		if(brojPogodjenih == 1 && brojOnihKojiNisuNaSvomMestu == 1) {
 			a.setOpaque(true);
@@ -1832,14 +1808,5 @@ public class Skocko extends JFrame {
 	/**
 	 * metoda za upisivanje najboljeg rezultata u fajl
 	 */
-	public void upisiUFajl() {
-		try {
-			ObjectOutputStream out = new ObjectOutputStream(new BufferedOutputStream(new FileOutputStream("rezultat.out")));
-			out.writeInt(100 - progressBar.getValue());
-			out.close();
-		} catch(Exception e) {
-			throw new RuntimeException(e);
-		}
-
-	}
+	
 }
