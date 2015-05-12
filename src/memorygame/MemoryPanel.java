@@ -224,7 +224,7 @@ public class MemoryPanel extends JPanel implements Serializable {
 					GUIKontoler.sacuvajRez("highscoreMemoryGame.out", recordMisses);
 					JOptionPane.showMessageDialog(getParent(), "Cestitamo! Pobijedili ste sa novim rekordom!");
 				} else {
-					JOptionPane.showMessageDialog(getParent(), "Cestitamo! Pobijedili ste!");
+					JOptionPane.showMessageDialog(getParent(), "Čestitamo! Pobijedili ste!");
 				}
 				
 				
