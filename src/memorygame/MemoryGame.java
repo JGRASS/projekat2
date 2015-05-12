@@ -75,53 +75,53 @@ public class MemoryGame extends JFrame {
 		jLabel2 = new javax.swing.JLabel();
 		getContentPane().setLayout(null);
 		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-		setTitle("Memory Game");
+		setTitle("Igra Memorije");
 		mp.setBorder(new LineBorder(new Color(0, 0,
 				0), 4));
 		getContentPane().add(mp);
 		mp.setBounds(10, 10, 230, 230);
 		jLabel1.setFont(new java.awt.Font("Comic Sans MS", 1, 36));
 		jLabel1.setHorizontalAlignment(SwingConstants.CENTER);
-		jLabel1.setText("Memory");
+		jLabel1.setText("Igra");
 		getContentPane().add(jLabel1);
 		jLabel1.setBounds(250, 10, 210, 50);
 		jLabel2.setFont(new java.awt.Font("Comic Sans MS", 1, 36));
 		jLabel2.setHorizontalAlignment(SwingConstants.CENTER);
-		jLabel2.setText("Game");
+		jLabel2.setText("Memorije");
 		getContentPane().add(jLabel2);
 		jLabel2.setBounds(250, 60, 210, 50);
 		getContentPane().add(getBtnNewGame());
 		
-		lblHits = new JLabel("Hits:");
+		lblHits = new JLabel("Pogoci:");
 		lblHits.setFont(new Font("Tahoma", Font.BOLD, 16));
-		lblHits.setBounds(250, 132, 46, 14);
+		lblHits.setBounds(250, 132, 62, 20);
 		getContentPane().add(lblHits);
 		
-		lblMisses = new JLabel("Misses:");
+		lblMisses = new JLabel("Promasaji:");
 		lblMisses.setFont(new Font("Tahoma", Font.BOLD, 16));
-		lblMisses.setBounds(250, 176, 62, 14);
+		lblMisses.setBounds(250, 176, 90, 16);
 		getContentPane().add(lblMisses);
 		
 		lblHitsVal = new JLabel("0");
 		lblHitsVal.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		lblHitsVal.setBounds(291, 132, 46, 14);
+		lblHitsVal.setBounds(320, 132, 46, 20);
 		getContentPane().add(lblHitsVal);
 		
 		lblMissesVal = new JLabel("0");
 		lblMissesVal.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		lblMissesVal.setBounds(320, 178, 46, 14);
+		lblMissesVal.setBounds(342, 178, 24, 14);
 		getContentPane().add(lblMissesVal);
 		
-		btnRecord = new JButton("Record");
+		btnRecord = new JButton("Rekord");
 		btnRecord.setBackground(new Color(255, 100, 51));
 		btnRecord.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		btnRecord.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				new JOptionPane().showMessageDialog(getParent(), "Smallest number of misses: " +MemoryPanel.getRecordMisses());
+				new JOptionPane().showMessageDialog(getParent(), "Najmanji broj promasaja: " +MemoryPanel.getRecordMisses());
 			}
 		});
 		btnRecord.setFont(new Font("Tahoma", Font.BOLD, 16));
-		btnRecord.setBounds(365, 130, 105, 60);
+		btnRecord.setBounds(373, 130, 97, 60);
 		getContentPane().add(btnRecord);
 		Dimension screenSize = java.awt.Toolkit.getDefaultToolkit()
 				.getScreenSize();
@@ -131,7 +131,7 @@ public class MemoryGame extends JFrame {
 
 	private JButton getBtnNewGame() {
 		if (btnNewGame == null) {
-			btnNewGame = new JButton("New Game");
+			btnNewGame = new JButton("Nova Igra ");
 			btnNewGame.setBackground(new Color(255, 153, 51));
 			btnNewGame.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 			btnNewGame.addActionListener(new ActionListener() {
